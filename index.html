@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The $1 OPC Experiment — Ordinary Man Trying</title>
+  <meta name="description" content="I bought a domain for about $1 and used AI, GitHub and free tools to turn it into a real one-person website experiment.">
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://one-dollar.ordinarymantrying.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="The $1 OPC Experiment — Ordinary Man Trying">
+  <meta property="og:description" content="I bought a domain for about $1 and used AI, GitHub and free tools to turn it into a real one-person website experiment.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://one-dollar.ordinarymantrying.com/">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="The $1 OPC Experiment — Ordinary Man Trying">
+  <meta name="twitter:description" content="I bought a domain for about $1 and used AI, GitHub and free tools to turn it into a real one-person website experiment.">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafaf9;
+      --text: #1c1c1a;
+      --muted: #6b6b63;
+      --accent: #2563eb;
+      --border: #e4e4e0;
+      --card: #ffffff;
+      --hero-bg: #111110;
+      --hero-text: #f5f5f3;
+      --hero-muted: #9ca3a0;
+      --mono: 'Courier New', Courier, monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,250,249,0.94);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+    }
+    .nav-inner {
+      max-width: 920px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+      gap: 0.75rem;
+    }
+    .nav-brand {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.1rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.3rem 0.55rem;
+      border-radius: 4px;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-omt {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-omt:hover { text-decoration: underline; }
+
+    /* ── LAYOUT ── */
+    section { padding: 4.5rem 1.5rem; }
+    .container { max-width: 860px; margin: 0 auto; }
+
+    /* ── HERO ── */
+    #hero {
+      background: var(--hero-bg);
+      color: var(--hero-text);
+      padding: 5.5rem 1.5rem 4.5rem;
+    }
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--hero-muted);
+      margin-bottom: 1.25rem;
+    }
+    #hero h1 {
+      font-size: clamp(2rem, 5.5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.5rem;
+    }
+    #hero p {
+      font-size: 1.08rem;
+      color: var(--hero-muted);
+      max-width: 560px;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+    }
+    .stat-chip {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--hero-text);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.35rem 0.75rem;
+      border-radius: 4px;
+    }
+    .no-success {
+      font-size: 0.82rem;
+      color: var(--hero-muted);
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.65rem 1.3rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+    .btn:hover { opacity: 0.86; transform: translateY(-1px); }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-ghost {
+      background: rgba(255,255,255,0.07);
+      color: var(--hero-text);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--accent);
+      border: 1.5px solid var(--accent);
+    }
+
+    /* ── SECTION COMMON ── */
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+    h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2.15rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+    .lead {
+      font-size: 1.02rem;
+      color: var(--muted);
+      max-width: 600px;
+      line-height: 1.72;
+      margin-bottom: 1.75rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .cta-block {
+      margin-top: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.65rem;
+    }
+    .caption {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ── SECTION 2: RESULT ── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1.25rem;
+    }
+    .tag {
+      font-size: 0.73rem;
+      font-family: var(--mono);
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+    }
+
+    /* ── SECTION 3: DATA ── */
+    #data { background: #f8f8f6; }
+    .track-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 0.5rem;
+      margin: 1.25rem 0;
+    }
+    .track-item {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.84rem;
+      padding: 0.45rem 0;
+    }
+    .track-item::before {
+      content: '→';
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ── SECTION 4: FACTORY ── */
+    .private-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fde68a;
+      padding: 0.28rem 0.65rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+    .flow-wrap {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .flow-diagram {
+      font-family: var(--mono);
+      font-size: 0.84rem;
+      background: #f8f8f6;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem 1.75rem;
+      line-height: 1;
+    }
+    .flow-step {
+      display: block;
+      color: var(--text);
+      font-weight: 700;
+      padding: 0.35rem 0;
+    }
+    .flow-arrow {
+      display: block;
+      color: #94a3b8;
+      text-align: center;
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+    .tech-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin: 1.1rem 0;
+    }
+    .tech-chip {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      background: #f1f5f9;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      padding: 0.22rem 0.55rem;
+      border-radius: 4px;
+    }
+    .factory-note {
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin-top: 1rem;
+      line-height: 1.6;
+    }
+
+    /* ── SECTION 5: GITHUB ── */
+    #github { background: #f4f4f2; }
+    .gh-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 0.45rem;
+      margin: 1.5rem 0;
+    }
+    .gh-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.55rem;
+      font-size: 0.84rem;
+      padding: 0.6rem 0.85rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      line-height: 1.4;
+    }
+    .gh-num {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+      padding-top: 0.05rem;
+    }
+    .coming-soon {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      background: #f1f5f9;
+      color: #64748b;
+      border: 1px solid #e2e8f0;
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── SECTION 6: STORY ── */
+    #story {
+      background: var(--hero-bg);
+      color: var(--hero-text);
+    }
+    #story .eyebrow { margin-bottom: 1rem; }
+    #story h2 {
+      font-size: clamp(1.35rem, 3.5vw, 2rem);
+      max-width: 640px;
+      margin-bottom: 1.25rem;
+    }
+    #story .lead {
+      color: var(--hero-muted);
+      max-width: 560px;
+    }
+    .key-line {
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--hero-text);
+      border-left: 3px solid var(--accent);
+      padding-left: 1rem;
+      margin: 1.75rem 0;
+      line-height: 1.55;
+    }
+    .first-target {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: #6ee7b7;
+      margin-bottom: 2.25rem;
+    }
+    .story-btn {
+      font-size: 1rem;
+      padding: 0.8rem 2rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 1.75rem 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    footer p { font-size: 0.8rem; color: var(--muted); }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links { display: none; }
+      section { padding: 3rem 1rem; }
+      #hero { padding: 3.5rem 1rem 3rem; }
+      .track-grid { grid-template-columns: 1fr 1fr; }
+      .gh-grid { grid-template-columns: 1fr; }
+      .flow-wrap { flex-direction: column; gap: 1rem; }
+    }
+    @media (max-width: 400px) {
+      .track-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav aria-label="Site navigation">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#" aria-label="$1 OPC Home">$1 OPC</a>
+    <ul class="nav-links" role="list">
+      <li><a href="#result">Result</a></li>
+      <li><a href="#data">Data</a></li>
+      <li><a href="#factory">Factory</a></li>
+      <li><a href="#github">GitHub</a></li>
+      <li><a href="#story">Story</a></li>
+    </ul>
+    <a class="nav-omt"
+       href="https://ordinarymantrying.com/?utm_source=one-dollar&utm_medium=nav&utm_campaign=opc_experiment"
+       target="_blank" rel="noopener">Ordinary Man Trying&nbsp;↗</a>
+  </div>
+</nav>
+
+<!-- ── SECTION 1: HERO ── -->
+<section id="hero" aria-labelledby="hero-heading">
+  <div class="container">
+    <p class="eyebrow">The $1 OPC Experiment</p>
+    <h1 id="hero-heading">What Can a $1 Domain Become?</h1>
+    <p>I bought ChineseFortuneTools.online for about $1.<br>
+       Instead of letting it expire, I used AI, GitHub and free infrastructure
+       to turn it into a real website laboratory.</p>
+
+    <div class="stats-row" role="list" aria-label="Key numbers">
+      <span class="stat-chip" role="listitem">Domain cost: ~$1</span>
+      <span class="stat-chip" role="listitem">Monthly hosting: ~$0</span>
+      <span class="stat-chip" role="listitem">Internet revenue: $0</span>
+    </div>
+
+    <p class="no-success">No success story yet. This is the experiment.</p>
+
+    <div class="btn-row">
+      <a class="btn btn-primary"
+         href="https://chinesefortunetools.online/?utm_source=one-dollar&utm_medium=demo&utm_campaign=opc_experiment"
+         target="_blank" rel="noopener">See What $1 Built →</a>
+      <a class="btn btn-ghost"
+         href="https://ordinarymantrying.com/?utm_source=one-dollar&utm_medium=demo&utm_campaign=opc_experiment"
+         target="_blank" rel="noopener">Follow the Journey →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 2: RESULT ── -->
+<section id="result" aria-labelledby="result-heading">
+  <div class="container">
+    <p class="section-label">The Result</p>
+    <h2 id="result-heading">$1 → A Real Website</h2>
+    <p class="lead">ChineseFortuneTools.online became a playground for small
+       Chinese-culture tools, seasonal experiments and shareable ideas.</p>
+
+    <div class="card">
+      <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:0.5rem;">Chinese Culture Lab</h3>
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.65;">
+        A collection of real interactive tools built with static-first techniques,
+        AI assistance and zero traditional hosting cost.
+      </p>
+      <div class="tags" role="list" aria-label="Site characteristics">
+        <span class="tag" role="listitem">Real website</span>
+        <span class="tag" role="listitem">Real interactive tools</span>
+        <span class="tag" role="listitem">Static-first</span>
+        <span class="tag" role="listitem">No database</span>
+        <span class="tag" role="listitem">No server bill</span>
+        <span class="tag" role="listitem">AI-assisted dev</span>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <a class="btn btn-outline"
+         href="https://chinesefortunetools.online/?utm_source=one-dollar&utm_medium=proof&utm_campaign=opc_experiment"
+         target="_blank" rel="noopener">Visit Chinese Culture Lab →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 3: DATA ── -->
+<section id="data" aria-labelledby="data-heading">
+  <div class="container">
+    <p class="section-label">Real Data</p>
+    <h2 id="data-heading">Build. Measure. Decide.</h2>
+    <p class="lead">Building is easy with AI.<br>
+       Knowing what deserves more work is harder.<br>
+       So I connected GA4 + Google Search Console to a simple experiment dashboard.</p>
+
+    <div class="card">
+      <p style="font-family:var(--mono);font-size:0.72rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;">
+        Dashboard tracks:
+      </p>
+      <div class="track-grid" role="list">
+        <span class="track-item" role="listitem">Visitors</span>
+        <span class="track-item" role="listitem">Tool starts</span>
+        <span class="track-item" role="listitem">Completion rate</span>
+        <span class="track-item" role="listitem">Share rate</span>
+        <span class="track-item" role="listitem">Main-site clicks</span>
+        <span class="track-item" role="listitem">Google impressions</span>
+        <span class="track-item" role="listitem">Google clicks</span>
+        <span class="track-item" role="listitem">CTR</span>
+        <span class="track-item" role="listitem">Search position</span>
+        <span class="track-item" role="listitem">Experiment score</span>
+        <span class="track-item" role="listitem">Graduate</span>
+        <span class="track-item" role="listitem">Accelerate</span>
+        <span class="track-item" role="listitem">Observe</span>
+        <span class="track-item" role="listitem">Retire</span>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <a class="btn btn-primary"
+         href="https://chinesefortunetools.online/dashboard/?utm_source=one-dollar&utm_medium=proof&utm_campaign=opc_experiment"
+         target="_blank" rel="noopener">Open the Live Experiment Dashboard →</a>
+      <p class="caption">The numbers may be tiny. That's the point — the experiment starts at zero.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 4: FACTORY ── -->
+<section id="factory" aria-labelledby="factory-heading">
+  <div class="container">
+    <p class="section-label">The Website Factory</p>
+    <h2 id="factory-heading">Then I Got Tired of Rebuilding the Same Things</h2>
+    <p class="lead">Every new site needed the same boring infrastructure:
+       sitemap, robots.txt, canonical URLs, schemas, analytics, CI, templates,
+       deployment&hellip;</p>
+    <p class="lead" style="margin-top:-1rem;">So I built a private reusable system for my own small website portfolio.</p>
+
+    <span class="private-badge" aria-label="Private internal tool">&#128274; Private Internal Tool</span>
+
+    <div class="card">
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:1.25rem;">One-Person Site Starter</h3>
+
+      <div class="flow-wrap">
+        <div class="flow-diagram" aria-label="Build pipeline flow">
+          <span class="flow-step">Idea</span>
+          <span class="flow-arrow">↓</span>
+          <span class="flow-step">Site Config</span>
+          <span class="flow-arrow">↓</span>
+          <span class="flow-step">Content + Tools</span>
+          <span class="flow-arrow">↓</span>
+          <span class="flow-step">Build</span>
+          <span class="flow-arrow">↓</span>
+          <span class="flow-step">SEO + Schema + Sitemap</span>
+          <span class="flow-arrow">↓</span>
+          <span class="flow-step">CI</span>
+          <span class="flow-arrow">↓</span>
+          <span class="flow-step">Deploy</span>
+        </div>
+
+        <div>
+          <div class="tech-row">
+            <span class="tech-chip">Python + Jinja2 + Markdown</span>
+            <span class="tech-chip">No React</span>
+            <span class="tech-chip">No npm</span>
+            <span class="tech-chip">No database</span>
+            <span class="tech-chip">Static-first</span>
+          </div>
+          <p class="factory-note">I use the full version privately. I may eventually release a simplified Starter Lite.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 5: GITHUB ── -->
+<section id="github" aria-labelledby="github-heading">
+  <div class="container">
+    <p class="section-label">GitHub Superpowers</p>
+    <h2 id="github-heading">GitHub Is More Than Code Storage</h2>
+    <p class="lead">I started discovering how many paid tools a tiny one-person project
+       can avoid by using GitHub differently.</p>
+
+    <div class="gh-grid" role="list">
+      <div class="gh-item" role="listitem"><span class="gh-num">01</span><span>Static hosting</span></div>
+      <div class="gh-item" role="listitem"><span class="gh-num">02</span><span>Scheduled jobs</span></div>
+      <div class="gh-item" role="listitem"><span class="gh-num">03</span><span>JSON database</span></div>
+      <div class="gh-item" role="listitem"><span class="gh-num">04</span><span>Static APIs</span></div>
+      <div class="gh-item" role="listitem"><span class="gh-num">05</span><span>AI job scheduler</span></div>
+      <div class="gh-item" role="listitem"><span class="gh-num">06</span><span>Product idea database</span></div>
+      <div class="gh-item" role="listitem"><span class="gh-num">07</span><span>User voting</span></div>
+      <div class="gh-item" role="listitem"><span class="gh-num">08</span><span>Release / download center</span></div>
+      <div class="gh-item" role="listitem"><span class="gh-num">09</span><span>PR testing</span></div>
+      <div class="gh-item" role="listitem"><span class="gh-num">10</span><span>Remote site configuration</span></div>
+      <div class="gh-item" role="listitem"><span class="gh-num">11</span><span>Website health checks</span></div>
+      <div class="gh-item" role="listitem"><span class="gh-num">12</span><span>Broken-link monitoring</span></div>
+      <div class="gh-item" role="listitem"><span class="gh-num">13</span><span>SEO automation</span></div>
+      <div class="gh-item" role="listitem"><span class="gh-num">14</span><span>Experiment graduation system</span></div>
+      <div class="gh-item" role="listitem"><span class="gh-num">15</span><span>Structured content automation</span></div>
+      <div class="gh-item" role="listitem"><span class="gh-num">16</span><span>Founder dashboard</span></div>
+      <div class="gh-item" role="listitem"><span class="gh-num">17</span><span>Open-source demand research</span></div>
+    </div>
+
+    <div class="cta-block">
+      <p style="font-size:0.84rem;color:var(--muted);">Full article on Ordinary Man Trying:</p>
+      <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+        <a class="btn btn-outline"
+           href="https://ordinarymantrying.com/?utm_source=one-dollar&utm_medium=story&utm_campaign=opc_experiment"
+           target="_blank" rel="noopener">Ordinary Man Trying ↗</a>
+        <span class="coming-soon">Article coming soon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 6: STORY ── -->
+<section id="story" aria-labelledby="story-heading">
+  <div class="container">
+    <p class="eyebrow">The Actual Experiment</p>
+    <h2 id="story-heading">Can an Ordinary Person Build a Real One-Person Internet Business With AI?</h2>
+    <p class="lead">I'm 46. I've been learning websites, AI, SEO and online business
+       for months. Internet revenue is still $0.</p>
+
+    <blockquote class="key-line">
+      I'm not teaching from success. I'm documenting the attempt.
+    </blockquote>
+
+    <p class="first-target">▸ First target: $1 earned online.</p>
+
+    <a class="btn btn-primary story-btn"
+       href="https://ordinarymantrying.com/?utm_source=one-dollar&utm_medium=story&utm_campaign=opc_experiment"
+       target="_blank" rel="noopener">Follow the Experiment →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>
+    <a href="https://ordinarymantrying.com/?utm_source=one-dollar&utm_medium=footer&utm_campaign=opc_experiment"
+       target="_blank" rel="noopener">Ordinary Man Trying</a>
+    &mdash; Build. Test. Learn. Keep Going.
+  </p>
+</footer>
+
+</body>
+</html>
