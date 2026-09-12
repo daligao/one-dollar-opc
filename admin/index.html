@@ -49,7 +49,19 @@
 <h1>$1 OPC — Admin Console</h1>
 <p class="sub">Updates company state via Cloudflare KV. Must be behind Cloudflare Access.</p>
 
-<div class="warn">⚠️ Do not use this page publicly until Cloudflare Access is configured for <code>/admin/*</code> and <code>/api/admin/*</code>.</div>
+<div class="warn">⚠️ <strong>This console must be protected by Cloudflare Access.</strong> Without it, anyone can overwrite company state via <code>/api/admin/state</code>. Do not share or expose this URL.</div>
+
+<div class="section">
+  <h2>How to use this console</h2>
+  <ol style="padding-left:1.2rem;font-size:0.84rem;line-height:2;">
+    <li>Click <strong>Load Current State</strong> to pull existing data from KV (or fallback JSON)</li>
+    <li>Edit company numbers, mission, or milestone statuses</li>
+    <li>Add OPC Log entries for major milestones — newest entry goes first</li>
+    <li>Click <strong>Save to KV</strong> to publish</li>
+    <li>Open the <a href="/" style="color:#2563eb;">public homepage</a> in a new tab and refresh to verify</li>
+  </ol>
+  <p style="margin-top:0.75rem;font-size:0.8rem;color:#666;">If KV is unavailable, data falls back to <code>/data/company.json</code> (read-only). Saving requires the <code>OPC_STATE</code> KV binding to be active.</p>
+</div>
 
 <div class="section">
   <h2>Load / Save State</h2>
@@ -186,7 +198,7 @@
             set('f-milestone', state.latest_milestone || '');
             renderMilestones(state.milestones || []);
             renderLog(state.log || []);
-            setStatus('load-status', 'KV unavailable — loaded from company.json fallback', 'err');
+            setStatus('load-status', 'Loaded fallback data from company.json. Saving requires the OPC_STATE KV binding.', 'err');
           })
           .catch(function () { setStatus('load-status', 'Could not load state', 'err'); });
       })

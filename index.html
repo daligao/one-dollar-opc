@@ -403,13 +403,21 @@
       padding: 0.8rem 2rem;
     }
 
+    /* ── COMPANY IDENTITY ── */
+    #company-id { background: #f4f4f2; border-top: 1px solid var(--border); }
+    .company-id-inner { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
+    .company-id-inner a { font-size: 0.9rem; font-weight: 600; color: var(--accent); text-decoration: none; }
+    .company-id-inner a:hover { text-decoration: underline; }
+
     /* ── FOOTER ── */
     footer {
-      padding: 1.75rem 1.5rem;
+      padding: 2rem 1.5rem;
       border-top: 1px solid var(--border);
       text-align: center;
     }
-    footer p { font-size: 0.8rem; color: var(--muted); }
+    .footer-brand { font-family: var(--mono); font-size: 0.8rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
+    .footer-tagline { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.75rem; }
+    .footer-links { font-size: 0.78rem; color: var(--muted); }
     footer a { color: var(--accent); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
 
@@ -533,14 +541,11 @@
 <!-- NAV -->
 <nav aria-label="Site navigation">
   <div class="nav-inner">
-    <a class="nav-brand" href="#" aria-label="$1 OPC Home">$1 OPC</a>
+    <a class="nav-brand" href="/" aria-label="$1 OPC Home">$1 OPC</a>
     <ul class="nav-links" role="list">
-      <li><a href="#snapshot">Snapshot</a></li>
-      <li><a href="#result">Result</a></li>
-      <li><a href="#data">Data</a></li>
-      <li><a href="#factory">Factory</a></li>
-      <li><a href="#github">GitHub</a></li>
-      <li><a href="#story">Story</a></li>
+      <li><a href="/" aria-current="page">Dashboard</a></li>
+      <li><a href="/manifesto/">Manifesto</a></li>
+      <li><a href="/contact/">Contact</a></li>
     </ul>
     <a class="nav-omt"
        href="https://ordinarymantrying.com/?utm_source=one-dollar&utm_medium=nav&utm_campaign=opc_experiment"
@@ -838,6 +843,20 @@
   </div>
 </section>
 
+<!-- ── SECTION: COMPANY IDENTITY ── -->
+<section id="company-id" aria-labelledby="company-id-heading">
+  <div class="container">
+    <p class="section-label">The Company</p>
+    <h2 id="company-id-heading">This Is My One-Person Internet Company</h2>
+    <p class="lead">The $1 domain started as an experiment.<br>
+       It has now become the public starting point for the small internet company I am trying to build.</p>
+    <div class="company-id-inner">
+      <a href="/manifesto/">Read the Manifesto →</a>
+      <a href="/contact/">Say Hello →</a>
+    </div>
+  </div>
+</section>
+
 <!-- ── SECTION 6: STORY ── -->
 <section id="story" aria-labelledby="story-heading">
   <div class="container">
@@ -861,10 +880,13 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>
-    <a href="https://ordinarymantrying.com/?utm_source=one-dollar&utm_medium=footer&utm_campaign=opc_experiment"
-       target="_blank" rel="noopener">Ordinary Man Trying</a>
-    &mdash; Build. Test. Learn. Keep Going.
+  <p class="footer-brand">The $1 OPC Experiment</p>
+  <p class="footer-tagline">One Person. One Laptop. One Dollar Domain.</p>
+  <p class="footer-links">
+    <a href="/">Dashboard</a> &middot;
+    <a href="/manifesto/">Manifesto</a> &middot;
+    <a href="/contact/">Contact</a> &middot;
+    <a href="https://ordinarymantrying.com/?utm_source=one-dollar&utm_medium=footer&utm_campaign=opc_experiment" target="_blank" rel="noopener">Ordinary Man Trying ↗</a>
   </p>
 </footer>
 

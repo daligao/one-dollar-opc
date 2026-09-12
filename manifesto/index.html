@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0BP5M4XY6"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Z0BP5M4XY6');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The One-Person Internet Company Manifesto — $1 OPC</title>
+  <meta name="description" content="The principles behind building a one-person internet company from scratch — starting from $0.">
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://one-dollar.ordinarymantrying.com/manifesto/">
+
+  <meta property="og:title" content="The One-Person Internet Company Manifesto — $1 OPC">
+  <meta property="og:description" content="One person. One laptop. Small bets. Real users. Real data. Keep going.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://one-dollar.ordinarymantrying.com/manifesto/">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #fafaf9; --text: #1c1c1a; --muted: #6b6b63; --accent: #2563eb;
+      --border: #e4e4e0; --card: #ffffff; --hero-bg: #111110;
+      --hero-text: #f5f5f3; --hero-muted: #9ca3a0;
+      --mono: 'Courier New', Courier, monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; font-size: 16px; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(250,250,249,0.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 1.5rem; }
+    .nav-inner { max-width: 920px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 52px; gap: 0.75rem; }
+    .nav-brand { font-family: var(--mono); font-weight: 700; font-size: 0.9rem; color: var(--text); text-decoration: none; white-space: nowrap; letter-spacing: 0.02em; }
+    .nav-links { display: flex; align-items: center; gap: 0.1rem; list-style: none; }
+    .nav-links a { font-size: 0.8rem; color: var(--muted); text-decoration: none; padding: 0.3rem 0.55rem; border-radius: 4px; transition: color 0.15s; }
+    .nav-links a:hover, .nav-links a[aria-current] { color: var(--text); }
+    .nav-omt { font-size: 0.8rem; font-weight: 600; color: var(--accent); text-decoration: none; white-space: nowrap; }
+    .nav-omt:hover { text-decoration: underline; }
+
+    /* LAYOUT */
+    .container { max-width: 720px; margin: 0 auto; }
+    section { padding: 4.5rem 1.5rem; }
+
+    /* HERO */
+    #hero { background: var(--hero-bg); color: var(--hero-text); padding: 5.5rem 1.5rem 4.5rem; }
+    .eyebrow { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--hero-muted); margin-bottom: 1.25rem; }
+    #hero h1 { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 800; line-height: 1.12; letter-spacing: -0.025em; margin-bottom: 1.25rem; }
+    .hero-sub { font-size: 1.08rem; color: var(--hero-muted); line-height: 1.75; margin-bottom: 1.5rem; font-style: italic; }
+    .hero-intro { font-size: 0.96rem; color: var(--hero-muted); line-height: 1.9; }
+    .hero-intro p + p { margin-top: 0.75rem; }
+
+    /* PRINCIPLES */
+    #principles { }
+    .principles-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 0; }
+    .principle { padding: 2rem 0; border-bottom: 1px solid var(--border); }
+    .principle:last-child { border-bottom: none; }
+    .p-number { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .p-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 0.85rem; }
+    .p-body { font-size: 0.93rem; color: var(--muted); line-height: 1.8; }
+    .p-body p + p { margin-top: 0.6rem; }
+    .p-body ul { list-style: none; margin-top: 0.6rem; }
+    .p-body ul li { padding: 0.15rem 0; }
+    .p-body ul li::before { content: '·  '; font-family: var(--mono); color: var(--accent); }
+    .p-code { font-family: var(--mono); font-size: 0.82rem; background: #f1f5f9; color: #334155; border: 1px solid #e2e8f0; padding: 0.6rem 1rem; border-radius: 4px; margin-top: 0.6rem; display: inline-block; line-height: 1.8; }
+
+    /* CLOSING */
+    #closing { background: var(--hero-bg); color: var(--hero-text); }
+    .key-line { font-size: 1.15rem; font-style: italic; color: var(--hero-text); border-left: 3px solid var(--accent); padding-left: 1rem; margin: 1.75rem 0 1.25rem; line-height: 1.55; }
+    .closing-body { font-size: 0.96rem; color: var(--hero-muted); line-height: 1.9; }
+    .closing-body p + p { margin-top: 0.65rem; }
+    .signature { font-family: var(--mono); font-size: 0.82rem; color: #6ee7b7; margin-top: 2rem; line-height: 1.8; }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.25rem; }
+    .btn { display: inline-block; padding: 0.65rem 1.3rem; border-radius: 6px; font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: opacity 0.15s, transform 0.1s; }
+    .btn:hover { opacity: 0.86; transform: translateY(-1px); }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-ghost { background: rgba(255,255,255,0.07); color: var(--hero-text); border: 1px solid rgba(255,255,255,0.15); }
+
+    /* FOOTER */
+    footer { padding: 2rem 1.5rem; border-top: 1px solid var(--border); text-align: center; }
+    .footer-brand { font-family: var(--mono); font-size: 0.8rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
+    .footer-tagline { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.75rem; }
+    .footer-links { font-size: 0.78rem; color: var(--muted); }
+    .footer-links a { color: var(--accent); text-decoration: none; }
+    .footer-links a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links { display: none; }
+      section { padding: 3rem 1rem; }
+      #hero { padding: 3.5rem 1rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Site navigation">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/">$1 OPC</a>
+    <ul class="nav-links" role="list">
+      <li><a href="/">Dashboard</a></li>
+      <li><a href="/manifesto/" aria-current="page">Manifesto</a></li>
+      <li><a href="/contact/">Contact</a></li>
+    </ul>
+    <a class="nav-omt"
+       href="https://ordinarymantrying.com/?utm_source=one-dollar&utm_medium=nav&utm_campaign=opc_experiment"
+       target="_blank" rel="noopener">Ordinary Man Trying&nbsp;↗</a>
+  </div>
+</nav>
+
+<section id="hero" aria-labelledby="hero-heading">
+  <div class="container">
+    <p class="eyebrow">$1 OPC Experiment</p>
+    <h1 id="hero-heading">The One-Person Internet Company Manifesto</h1>
+    <p class="hero-sub">One person. One laptop. Small bets. Real users. Real data. Keep going.</p>
+    <div class="hero-intro">
+      <p>I am building a tiny internet company from scratch.</p>
+      <p>No employees.<br>No venture capital.<br>No big office.</p>
+      <p>Just one person, AI tools, a collection of websites, small experiments and a willingness to keep learning.</p>
+      <p>These are the principles I want to follow.</p>
+    </div>
+  </div>
+</section>
+
+<section id="principles" aria-labelledby="principles-heading">
+  <div class="container">
+    <h2 id="principles-heading" style="font-size:clamp(1.3rem,3vw,1.8rem);font-weight:700;letter-spacing:-0.02em;">Ten Principles</h2>
+    <div class="principles-list">
+
+      <div class="principle">
+        <p class="p-number">Principle 01</p>
+        <h3 class="p-title">Build assets, not just projects.</h3>
+        <div class="p-body">
+          <p>Every useful domain, article, tool, dataset, brand and audience should become an asset I can continue to own and improve.</p>
+        </div>
+      </div>
+
+      <div class="principle">
+        <p class="p-number">Principle 02</p>
+        <h3 class="p-title">Build small before building big.</h3>
+        <div class="p-body">
+          <p>Launch the smallest useful version.</p>
+          <p>Let real users and real data decide what deserves more time.</p>
+        </div>
+      </div>
+
+      <div class="principle">
+        <p class="p-number">Principle 03</p>
+        <h3 class="p-title">AI is my team, not my business.</h3>
+        <div class="p-body">
+          <p>AI can help me research, design, code, review and automate.</p>
+          <p>But AI cannot replace real users, real demand or real value.</p>
+        </div>
+      </div>
+
+      <div class="principle">
+        <p class="p-number">Principle 04</p>
+        <h3 class="p-title">Never solve the same infrastructure problem twice.</h3>
+        <div class="p-body">
+          <p>If I solve something repeatedly, turn it into a system, template or automation.</p>
+          <p>Build the factory once. Use it many times.</p>
+        </div>
+      </div>
+
+      <div class="principle">
+        <p class="p-number">Principle 05</p>
+        <h3 class="p-title">Measure before expanding.</h3>
+        <div class="p-body">
+          <p>Visitors, search impressions, usage, clicks and revenue matter more than how many features I can build.</p>
+          <p class="p-code">Build → Measure → Decide.</p>
+        </div>
+      </div>
+
+      <div class="principle">
+        <p class="p-number">Principle 06</p>
+        <h3 class="p-title">Keep costs low and runway long.</h3>
+        <div class="p-body">
+          <p>Small experiments with low fixed costs allow me to stay in the game for years.</p>
+          <p>Survival creates opportunities.</p>
+        </div>
+      </div>
+
+      <div class="principle">
+        <p class="p-number">Principle 07</p>
+        <h3 class="p-title">Own the important things.</h3>
+        <div class="p-body">
+          <p>Whenever practical, I want to own my:</p>
+          <ul>
+            <li>domains</li>
+            <li>content</li>
+            <li>code</li>
+            <li>data</li>
+            <li>brand</li>
+            <li>customer relationships</li>
+          </ul>
+          <p style="margin-top:0.6rem;">Platforms are tools. They are not the company.</p>
+        </div>
+      </div>
+
+      <div class="principle">
+        <p class="p-number">Principle 08</p>
+        <h3 class="p-title">Failure is data.</h3>
+        <div class="p-body">
+          <p>A website nobody wants is not completely wasted if it teaches me what not to build next.</p>
+          <p>Retiring an experiment is also progress.</p>
+        </div>
+      </div>
+
+      <div class="principle">
+        <p class="p-number">Principle 09</p>
+        <h3 class="p-title">The first goal is not $10,000 a month.</h3>
+        <div class="p-body">
+          <p>First:</p>
+          <p class="p-code">$1<br>then $10<br>then $100<br>then repeatability.</p>
+          <p>Build proof step by step.</p>
+        </div>
+      </div>
+
+      <div class="principle">
+        <p class="p-number">Principle 10</p>
+        <h3 class="p-title">Keep trying.</h3>
+        <div class="p-body">
+          <p>I do not need to know today which website will become the winner.</p>
+          <p>I need to remain curious, keep shipping, keep measuring and keep learning.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="closing" aria-labelledby="closing-heading">
+  <div class="container">
+    <blockquote class="key-line">
+      I'm not teaching from success. I'm documenting the attempt.
+    </blockquote>
+    <div class="closing-body">
+      <p>The company begins at $0.</p>
+      <p>The first mission is simple:</p>
+      <p><strong style="color:var(--hero-text);">Earn the first real dollar from something I built on the internet.</strong></p>
+    </div>
+    <div class="signature">
+      Văn Tuấn Lê<br>
+      Founder<br>
+      The $1 OPC Experiment &amp; Ordinary Man Trying<br>
+      September 2026
+    </div>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/">See the Company Dashboard →</a>
+      <a class="btn btn-ghost"
+         href="https://ordinarymantrying.com/?utm_source=one-dollar&utm_medium=manifesto&utm_campaign=opc_experiment"
+         target="_blank" rel="noopener">Follow the Full Journey →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-brand">The $1 OPC Experiment</p>
+  <p class="footer-tagline">One Person. One Laptop. One Dollar Domain.</p>
+  <p class="footer-links">
+    <a href="/">Dashboard</a> &middot;
+    <a href="/manifesto/">Manifesto</a> &middot;
+    <a href="/contact/">Contact</a> &middot;
+    <a href="https://ordinarymantrying.com/?utm_source=one-dollar&utm_medium=footer&utm_campaign=opc_experiment" target="_blank" rel="noopener">Ordinary Man Trying ↗</a>
+  </p>
+</footer>
+
+</body>
+</html>

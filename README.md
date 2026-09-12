@@ -8,6 +8,28 @@ Public homepage and lightweight company dashboard for a one-person internet comp
 
 ---
 
+## Site Structure
+
+| URL | Purpose |
+|---|---|
+| `/` | Public company dashboard |
+| `/manifesto/` | One-Person Internet Company Manifesto |
+| `/contact/` | Say Hello |
+| `/admin/` | Private founder console — not in public nav |
+
+> Dashboard = what is happening now  
+> Manifesto = what I believe  
+> Contact = how to reach me  
+> OrdinaryManTrying.com = the full story and build logs
+
+---
+
+## Contact
+
+levantuann002@gmail.com
+
+---
+
 ## Architecture
 
 ```
