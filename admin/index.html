@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>OPC Admin</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: monospace; background: #f5f5f5; color: #111; padding: 2rem 1rem; font-size: 14px; }
+    h1 { font-size: 1.1rem; margin-bottom: 0.25rem; }
+    .sub { color: #666; font-size: 0.85rem; margin-bottom: 2rem; }
+    .warn { background: #fff3cd; border: 1px solid #ffc107; padding: 0.6rem 0.9rem; border-radius: 4px; font-size: 0.82rem; margin-bottom: 1.5rem; }
+    .section { background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 1.25rem; margin-bottom: 1.5rem; max-width: 700px; }
+    .section h2 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; color: #444; }
+    label { display: block; font-size: 0.8rem; color: #555; margin-bottom: 0.25rem; margin-top: 0.75rem; }
+    label:first-of-type { margin-top: 0; }
+    input, textarea, select {
+      width: 100%; padding: 0.4rem 0.55rem; border: 1px solid #ccc; border-radius: 4px;
+      font-family: monospace; font-size: 0.88rem; background: #fafafa;
+    }
+    input:focus, textarea:focus, select:focus { outline: 2px solid #2563eb; border-color: transparent; }
+    textarea { resize: vertical; min-height: 60px; }
+    .row { display: flex; gap: 0.75rem; }
+    .row > * { flex: 1; }
+    .btn-row { display: flex; gap: 0.6rem; margin-top: 1.25rem; flex-wrap: wrap; }
+    button {
+      padding: 0.45rem 1rem; border: none; border-radius: 4px; cursor: pointer;
+      font-family: monospace; font-size: 0.85rem; font-weight: 700;
+    }
+    .btn-load { background: #e2e8f0; color: #1e293b; }
+    .btn-save { background: #2563eb; color: #fff; }
+    .btn-add  { background: #f1f5f9; color: #334155; }
+    button:disabled { opacity: 0.5; cursor: default; }
+    .status { margin-top: 0.75rem; font-size: 0.82rem; padding: 0.4rem 0.7rem; border-radius: 4px; display: none; }
+    .status.ok  { background: #d1fae5; color: #065f46; display: block; }
+    .status.err { background: #fee2e2; color: #991b1b; display: block; }
+    .milestone-row, .log-row {
+      border: 1px solid #e2e8f0; border-radius: 4px; padding: 0.6rem; margin-bottom: 0.5rem;
+      display: grid; gap: 0.5rem;
+    }
+    .milestone-row { grid-template-columns: 1fr 120px; }
+    .log-row { grid-template-columns: 80px 1fr 1fr; }
+    .remove-btn { background: #fee2e2; color: #991b1b; padding: 0.3rem 0.5rem; font-size: 0.75rem; align-self: start; justify-self: end; }
+  </style>
+</head>
+<body>
+
+<h1>$1 OPC — Admin Console</h1>
+<p class="sub">Updates company state via Cloudflare KV. Must be behind Cloudflare Access.</p>
+
+<div class="warn">⚠️ Do not use this page publicly until Cloudflare Access is configured for <code>/admin/*</code> and <code>/api/admin/*</code>.</div>
+
+<div class="section">
+  <h2>Load / Save State</h2>
+  <div class="btn-row">
+    <button class="btn-load" id="btn-load">Load Current State</button>
+  </div>
+  <div class="status" id="load-status"></div>
+</div>
+
+<div class="section">
+  <h2>Metrics</h2>
+  <div class="row">
+    <div>
+      <label for="f-revenue">Internet Revenue ($)</label>
+      <input type="number" id="f-revenue" min="0" step="0.01" placeholder="0">
+    </div>
+    <div>
+      <label for="f-mrr">MRR ($/mo)</label>
+      <input type="number" id="f-mrr" min="0" step="0.01" placeholder="0">
+    </div>
+  </div>
+  <div class="row">
+    <div>
+      <label for="f-websites">Websites Live</label>
+      <input type="number" id="f-websites" min="0" step="1" placeholder="1">
+    </div>
+    <div>
+      <label for="f-experiments">Experiments Running</label>
+      <input type="number" id="f-experiments" min="0" step="1" placeholder="5">
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Status</h2>
+  <label for="f-mission">Current Mission</label>
+  <input type="text" id="f-mission" maxlength="200" placeholder="Earn the first $1 online">
+  <label for="f-milestone">Latest Milestone</label>
+  <input type="text" id="f-milestone" maxlength="200" placeholder="Launched The $1 OPC Experiment">
+</div>
+
+<div class="section">
+  <h2>Milestone Ladder</h2>
+  <div id="milestone-editor"></div>
+  <div style="font-size:0.78rem;color:#888;margin-top:0.5rem;">Statuses: complete / current / pending / locked</div>
+</div>
+
+<div class="section">
+  <h2>Add Log Entry (newest first)</h2>
+  <div id="log-editor"></div>
+  <div class="btn-row">
+    <button class="btn-add" id="btn-add-log">+ Add Entry</button>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Save</h2>
+  <div class="btn-row">
+    <button class="btn-save" id="btn-save">Save to KV</button>
+  </div>
+  <div class="status" id="save-status"></div>
+</div>
+
+<script>
+(function () {
+  var currentMilestones = [];
+  var currentLog = [];
+
+  function setStatus(id, msg, type) {
+    var el = document.getElementById(id);
+    el.textContent = msg;
+    el.className = 'status ' + type;
+  }
+
+  function val(id) { return document.getElementById(id).value.trim(); }
+  function numVal(id) { return parseFloat(document.getElementById(id).value) || 0; }
+  function set(id, v) { var el = document.getElementById(id); if (el) el.value = v != null ? v : ''; }
+
+  function renderMilestones(list) {
+    currentMilestones = list || [];
+    var c = document.getElementById('milestone-editor');
+    c.innerHTML = currentMilestones.map(function (m, i) {
+      return '<div class="milestone-row" data-mi="' + i + '">' +
+        '<input type="text" class="m-label" value="' + esc(m.label) + '" maxlength="200">' +
+        '<select class="m-status">' +
+          ['complete','current','pending','locked'].map(function(s){
+            return '<option value="'+s+'"'+(m.status===s?' selected':'')+'>'+s+'</option>';
+          }).join('') +
+        '</select>' +
+        '</div>';
+    }).join('');
+  }
+
+  function renderLog(log) {
+    currentLog = log || [];
+    var c = document.getElementById('log-editor');
+    c.innerHTML = currentLog.map(function (e, i) {
+      return '<div class="log-row" data-li="' + i + '">' +
+        '<input type="text" class="l-date" value="' + esc(e.date) + '" placeholder="2026-09" maxlength="20">' +
+        '<input type="text" class="l-title" value="' + esc(e.title) + '" placeholder="Title" maxlength="200">' +
+        '<input type="text" class="l-note" value="' + esc(e.note||'') + '" placeholder="Short note" maxlength="500">' +
+        '</div>';
+    }).join('');
+  }
+
+  function esc(s) {
+    return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  document.getElementById('btn-load').addEventListener('click', function () {
+    this.disabled = true;
+    fetch('/api/state')
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(function (state) {
+        set('f-revenue', state.revenue || 0);
+        set('f-mrr', state.mrr || 0);
+        set('f-websites', state.websites_live != null ? state.websites_live : '');
+        set('f-experiments', state.experiments_running != null ? state.experiments_running : '');
+        set('f-mission', state.current_mission || '');
+        set('f-milestone', state.latest_milestone || '');
+        renderMilestones(state.milestones || []);
+        renderLog(state.log || []);
+        setStatus('load-status', 'Loaded from KV (' + (state.updated || 'unknown date') + ')', 'ok');
+      })
+      .catch(function (e) {
+        fetch('/data/company.json')
+          .then(function (r) { return r.json(); })
+          .then(function (state) {
+            set('f-revenue', state.revenue || 0);
+            set('f-mrr', state.mrr || 0);
+            set('f-websites', state.websites_live != null ? state.websites_live : '');
+            set('f-experiments', state.experiments_running != null ? state.experiments_running : '');
+            set('f-mission', state.current_mission || '');
+            set('f-milestone', state.latest_milestone || '');
+            renderMilestones(state.milestones || []);
+            renderLog(state.log || []);
+            setStatus('load-status', 'KV unavailable — loaded from company.json fallback', 'err');
+          })
+          .catch(function () { setStatus('load-status', 'Could not load state', 'err'); });
+      })
+      .finally(function () {
+        document.getElementById('btn-load').disabled = false;
+      });
+  });
+
+  document.getElementById('btn-add-log').addEventListener('click', function () {
+    currentLog.unshift({ date: '', title: '', note: '' });
+    renderLog(currentLog);
+  });
+
+  document.getElementById('btn-save').addEventListener('click', function () {
+    this.disabled = true;
+
+    // Read milestones from DOM
+    var rows = document.querySelectorAll('#milestone-editor .milestone-row');
+    var milestones = Array.from(rows).map(function (r) {
+      return {
+        id: currentMilestones[r.dataset.mi] ? currentMilestones[r.dataset.mi].id : 'item',
+        label: r.querySelector('.m-label').value.trim(),
+        status: r.querySelector('.m-status').value
+      };
+    });
+
+    // Read log from DOM
+    var logRows = document.querySelectorAll('#log-editor .log-row');
+    var log = Array.from(logRows).map(function (r) {
+      return {
+        date: r.querySelector('.l-date').value.trim(),
+        title: r.querySelector('.l-title').value.trim(),
+        note: r.querySelector('.l-note').value.trim()
+      };
+    }).filter(function (e) { return e.title; });
+
+    var payload = {
+      revenue:              numVal('f-revenue'),
+      mrr:                  numVal('f-mrr'),
+      websites_live:        parseInt(val('f-websites')) || 0,
+      experiments_running:  parseInt(val('f-experiments')) || 0,
+      current_mission:      val('f-mission'),
+      latest_milestone:     val('f-milestone'),
+      milestones:           milestones,
+      log:                  log
+    };
+
+    fetch('/api/admin/state', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
+      .then(function (res) {
+        if (res.ok) {
+          setStatus('save-status', 'Saved — updated ' + (res.data.updated || ''), 'ok');
+        } else {
+          var msg = res.data.errors ? res.data.errors.join('; ') : res.data.error || 'Unknown error';
+          setStatus('save-status', 'Error: ' + msg, 'err');
+        }
+      })
+      .catch(function () { setStatus('save-status', 'Network error', 'err'); })
+      .finally(function () { document.getElementById('btn-save').disabled = false; });
+  });
+
+  // Load on page open
+  document.getElementById('btn-load').click();
+})();
+</script>
+</body>
+</html>

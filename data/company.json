@@ -1,0 +1,39 @@
+{
+  "_note": "Update via /admin or POST /api/admin/state (requires Cloudflare Access).",
+  "updated": "2026-09-12",
+  "company_started": "2026-09-12",
+  "revenue": 0,
+  "mrr": 0,
+  "websites_live": 1,
+  "experiments_running": 5,
+  "current_mission": "Earn the first $1 online",
+  "latest_milestone": "Launched The $1 OPC Experiment",
+  "milestones": [
+    { "id": "first_site",         "label": "Build first real website",       "status": "complete" },
+    { "id": "site_factory",       "label": "Build reusable site factory",    "status": "complete" },
+    { "id": "launch_opc",         "label": "Launch public OPC experiment",   "status": "complete" },
+    { "id": "first_100_visitors", "label": "First 100 strangers",            "status": "current"  },
+    { "id": "first_dollar",       "label": "First $1 earned online",         "status": "current"  },
+    { "id": "first_10",           "label": "First $10",                      "status": "locked"   },
+    { "id": "first_100",          "label": "First $100",                     "status": "locked"   },
+    { "id": "first_100_mrr",      "label": "First $100 MRR",                 "status": "locked"   },
+    { "id": "site_pays_costs",    "label": "One site pays annual costs",     "status": "locked"   }
+  ],
+  "log": [
+    {
+      "date": "2026-09",
+      "title": "Launched the public $1 OPC dashboard",
+      "note": "The public homepage and company dashboard for the one-person internet company experiment."
+    },
+    {
+      "date": "2026-09",
+      "title": "Built the One-Person Site Starter",
+      "note": "A private reusable website factory for spinning up new internet properties fast."
+    },
+    {
+      "date": "2026-09",
+      "title": "Started The $1 OPC Experiment",
+      "note": "The public starting point of my one-person internet company."
+    }
+  ]
+}

@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0BP5M4XY6"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Z0BP5M4XY6');</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The $1 OPC Experiment — Ordinary Man Trying</title>
@@ -410,6 +413,106 @@
     footer a { color: var(--accent); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
 
+    /* ── SNAPSHOT ── */
+    #snapshot { border-bottom: 1px solid var(--border); }
+    .snapshot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 0.9rem;
+      margin: 1.25rem 0;
+    }
+    .metric-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+    }
+    .metric-value {
+      font-family: var(--mono);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 0.2rem;
+    }
+    .metric-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .metric-sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+    .first-dollar-badge {
+      display: none;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      background: #d1fae5;
+      color: #065f46;
+      border: 1px solid #6ee7b7;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      margin-top: 0.5rem;
+      letter-spacing: 0.06em;
+    }
+    .day-badge {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+    .state-rows { margin-top: 1.25rem; }
+    .state-row {
+      display: flex;
+      gap: 1rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+    .state-row:last-child { border-bottom: none; }
+    .state-key {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      min-width: 140px;
+      flex-shrink: 0;
+    }
+    .state-val { font-size: 0.88rem; color: var(--text); }
+
+    /* ── MILESTONES ── */
+    #milestones { background: #f8f8f6; }
+    .milestone-list { list-style: none; margin: 1.5rem 0; }
+    .milestone-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+    .milestone-item:last-child { border-bottom: none; }
+    .m-icon { font-size: 1rem; width: 1.5rem; text-align: center; flex-shrink: 0; }
+    .m-label-locked { color: var(--muted); }
+    .m-label-current { font-weight: 600; color: var(--text); }
+
+    /* ── OPC LOG ── */
+    .log-list { margin: 1.5rem 0; }
+    .log-entry {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .log-entry:last-child { border-bottom: none; }
+    .log-date { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); padding-top: 0.1rem; }
+    .log-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
+    .log-note { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
     /* ── MOBILE ── */
     @media (max-width: 640px) {
       nav { padding: 0 1rem; }
@@ -432,6 +535,7 @@
   <div class="nav-inner">
     <a class="nav-brand" href="#" aria-label="$1 OPC Home">$1 OPC</a>
     <ul class="nav-links" role="list">
+      <li><a href="#snapshot">Snapshot</a></li>
       <li><a href="#result">Result</a></li>
       <li><a href="#data">Data</a></li>
       <li><a href="#factory">Factory</a></li>
@@ -456,7 +560,7 @@
     <div class="stats-row" role="list" aria-label="Key numbers">
       <span class="stat-chip" role="listitem">Domain cost: ~$1</span>
       <span class="stat-chip" role="listitem">Monthly hosting: ~$0</span>
-      <span class="stat-chip" role="listitem">Internet revenue: $0</span>
+      <span class="stat-chip" role="listitem" id="hero-revenue">Internet revenue: $0</span>
     </div>
 
     <p class="no-success">No success story yet. This is the experiment.</p>
@@ -464,10 +568,59 @@
     <div class="btn-row">
       <a class="btn btn-primary"
          href="https://chinesefortunetools.online/?utm_source=one-dollar&utm_medium=demo&utm_campaign=opc_experiment"
+         data-ga-event="visit_real_site" data-ga-destination="chinesefortunetools.online" data-ga-section="hero"
          target="_blank" rel="noopener">See What $1 Built →</a>
       <a class="btn btn-ghost"
          href="https://ordinarymantrying.com/?utm_source=one-dollar&utm_medium=demo&utm_campaign=opc_experiment"
+         data-ga-event="read_omt" data-ga-destination="ordinarymantrying.com" data-ga-section="hero"
          target="_blank" rel="noopener">Follow the Journey →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION: COMPANY SNAPSHOT ── -->
+<section id="snapshot" aria-labelledby="snapshot-heading">
+  <div class="container">
+    <p class="section-label">Company Snapshot</p>
+    <h2 id="snapshot-heading">Building a One-Person Internet Company in Public</h2>
+    <p class="lead">Starting from $0 — no funding, no team, no guarantees.</p>
+
+    <p class="day-badge" id="opc-day">Day 1 of the experiment</p>
+
+    <div class="snapshot-grid" role="list" aria-label="Company metrics">
+      <div class="metric-card" role="listitem">
+        <div class="metric-value" id="opc-revenue">$0</div>
+        <div class="metric-label">Internet Revenue</div>
+        <div class="metric-sub" id="still-trying">Still trying.</div>
+        <span class="first-dollar-badge" id="first-dollar-badge">FIRST INTERNET DOLLAR EARNED</span>
+      </div>
+      <div class="metric-card" role="listitem">
+        <div class="metric-value" id="opc-mrr">$0/mo</div>
+        <div class="metric-label">MRR</div>
+      </div>
+      <div class="metric-card" role="listitem">
+        <div class="metric-value" id="opc-websites">—</div>
+        <div class="metric-label">Websites Live</div>
+      </div>
+      <div class="metric-card" role="listitem">
+        <div class="metric-value" id="opc-experiments">—</div>
+        <div class="metric-label">Experiments Running</div>
+      </div>
+    </div>
+
+    <div class="state-rows">
+      <div class="state-row">
+        <span class="state-key">Current mission</span>
+        <span class="state-val" id="opc-mission">Loading current company state…</span>
+      </div>
+      <div class="state-row">
+        <span class="state-key">Latest milestone</span>
+        <span class="state-val" id="opc-milestone">Loading…</span>
+      </div>
+      <div class="state-row">
+        <span class="state-key">Last updated</span>
+        <span class="state-val" id="opc-updated">Loading…</span>
+      </div>
     </div>
   </div>
 </section>
@@ -499,6 +652,7 @@
     <div class="cta-block">
       <a class="btn btn-outline"
          href="https://chinesefortunetools.online/?utm_source=one-dollar&utm_medium=proof&utm_campaign=opc_experiment"
+         data-ga-event="visit_real_site" data-ga-destination="chinesefortunetools.online" data-ga-section="result"
          target="_blank" rel="noopener">Visit Chinese Culture Lab →</a>
     </div>
   </div>
@@ -538,6 +692,7 @@
     <div class="cta-block">
       <a class="btn btn-primary"
          href="https://chinesefortunetools.online/dashboard/?utm_source=one-dollar&utm_medium=proof&utm_campaign=opc_experiment"
+         data-ga-event="open_experiment_dashboard" data-ga-destination="chinesefortunetools.online/dashboard" data-ga-section="data"
          target="_blank" rel="noopener">Open the Live Experiment Dashboard →</a>
       <p class="caption">The numbers may be tiny. That's the point — the experiment starts at zero.</p>
     </div>
@@ -624,7 +779,60 @@
       <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
         <a class="btn btn-outline"
            href="https://ordinarymantrying.com/i-bought-a-domain-for-1-heres-what-i-built-with-ai-githubi-bought-a-domain-for-1-heres-what-i-built-with-ai-github/?utm_source=one-dollar&utm_medium=story&utm_campaign=opc_experiment"
+           data-ga-event="github_article_click" data-ga-destination="ordinarymantrying.com" data-ga-section="github"
            target="_blank" rel="noopener">Read the 17 GitHub Experiments ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION: MILESTONE LADDER ── -->
+<section id="milestones" aria-labelledby="milestones-heading">
+  <div class="container">
+    <p class="section-label">Progress</p>
+    <h2 id="milestones-heading">The Road From $0</h2>
+    <p class="lead">Every checkpoint that matters.</p>
+    <ul class="milestone-list" id="milestone-list" role="list" aria-label="OPC milestones">
+      <li class="milestone-item"><span class="m-icon">✅</span><span>Build first real website</span></li>
+      <li class="milestone-item"><span class="m-icon">✅</span><span>Build reusable site factory</span></li>
+      <li class="milestone-item"><span class="m-icon">✅</span><span>Launch public OPC experiment</span></li>
+      <li class="milestone-item"><span class="m-icon">⏳</span><span class="m-label-current">First 100 strangers</span></li>
+      <li class="milestone-item"><span class="m-icon">🎯</span><span class="m-label-current">First $1 earned online</span></li>
+      <li class="milestone-item"><span class="m-icon">🔒</span><span class="m-label-locked">First $10</span></li>
+      <li class="milestone-item"><span class="m-icon">🔒</span><span class="m-label-locked">First $100</span></li>
+      <li class="milestone-item"><span class="m-icon">🔒</span><span class="m-label-locked">First $100 MRR</span></li>
+      <li class="milestone-item"><span class="m-icon">🔒</span><span class="m-label-locked">One site pays annual costs</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── SECTION: OPC LOG ── -->
+<section id="opclog" aria-labelledby="opclog-heading">
+  <div class="container">
+    <p class="section-label">Corporate History</p>
+    <h2 id="opclog-heading">OPC Log</h2>
+    <p class="lead">Major milestones only. Newest first.</p>
+    <div class="log-list" id="opc-log-list" role="list" aria-label="OPC company log">
+      <div class="log-entry" role="listitem">
+        <span class="log-date">2026-09</span>
+        <div>
+          <p class="log-title">Launched the public $1 OPC dashboard</p>
+          <p class="log-note">The public homepage and company dashboard for the one-person internet company experiment.</p>
+        </div>
+      </div>
+      <div class="log-entry" role="listitem">
+        <span class="log-date">2026-09</span>
+        <div>
+          <p class="log-title">Built the One-Person Site Starter</p>
+          <p class="log-note">A private reusable website factory for spinning up new internet properties fast.</p>
+        </div>
+      </div>
+      <div class="log-entry" role="listitem">
+        <span class="log-date">2026-09</span>
+        <div>
+          <p class="log-title">Started The $1 OPC Experiment</p>
+          <p class="log-note">The public starting point of my one-person internet company.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -646,6 +854,7 @@
 
     <a class="btn btn-primary story-btn"
        href="https://ordinarymantrying.com/?utm_source=one-dollar&utm_medium=story&utm_campaign=opc_experiment"
+       data-ga-event="read_omt" data-ga-destination="ordinarymantrying.com" data-ga-section="story"
        target="_blank" rel="noopener">Follow the Experiment →</a>
   </div>
 </section>
@@ -659,5 +868,103 @@
   </p>
 </footer>
 
+<script>
+(function () {
+  var COMPANY_STARTED = '2026-09-12';
+
+  function fmt$(n) {
+    if (!n || n === 0) return '$0';
+    if (n < 10) return '$' + n.toFixed(2);
+    return '$' + Math.round(n).toLocaleString();
+  }
+  function fmtMRR(n) { return (n ? fmt$(n) : '$0') + '/mo'; }
+  function daysSince(d) {
+    return Math.max(1, Math.floor((new Date() - new Date(d)) / 86400000) + 1);
+  }
+  function setText(id, val) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = val;
+  }
+  function esc(s) {
+    return String(s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function mIcon(status) {
+    return { complete: '✅', current: '🎯', pending: '⏳', locked: '🔒' }[status] || '⏳';
+  }
+
+  function render(state) {
+    var day = daysSince(state.company_started || COMPANY_STARTED);
+    setText('opc-day', 'Day ' + day + ' of the experiment');
+    setText('opc-revenue', fmt$(state.revenue));
+    setText('opc-mrr', fmtMRR(state.mrr));
+    setText('opc-websites', state.websites_live != null ? state.websites_live : '—');
+    setText('opc-experiments', state.experiments_running != null ? state.experiments_running : '—');
+    setText('opc-mission', state.current_mission || '—');
+    setText('opc-milestone', state.latest_milestone || '—');
+    setText('opc-updated', state.updated || '—');
+
+    var chip = document.getElementById('hero-revenue');
+    if (chip) chip.textContent = 'Internet revenue: ' + fmt$(state.revenue);
+
+    if (state.revenue > 0) {
+      var badge = document.getElementById('first-dollar-badge');
+      if (badge) badge.style.display = 'inline-block';
+      setText('still-trying', 'First internet dollar earned.');
+    }
+
+    var ml = document.getElementById('milestone-list');
+    if (ml && Array.isArray(state.milestones)) {
+      ml.innerHTML = state.milestones.map(function (m) {
+        var cls = m.status === 'locked' ? 'm-label-locked'
+                : m.status === 'current' ? 'm-label-current' : '';
+        return '<li class="milestone-item"><span class="m-icon">' + mIcon(m.status) +
+          '</span><span class="' + cls + '">' + esc(m.label) + '</span></li>';
+      }).join('');
+    }
+
+    var logEl = document.getElementById('opc-log-list');
+    if (logEl && Array.isArray(state.log)) {
+      logEl.innerHTML = state.log.map(function (e) {
+        return '<div class="log-entry" role="listitem">' +
+          '<span class="log-date">' + esc(e.date) + '</span>' +
+          '<div><p class="log-title">' + esc(e.title) + '</p>' +
+          (e.note ? '<p class="log-note">' + esc(e.note) + '</p>' : '') +
+          '</div></div>';
+      }).join('');
+    }
+  }
+
+  function loadState() {
+    fetch('/api/state')
+      .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+      .then(render)
+      .catch(function () {
+        fetch('/data/company.json')
+          .then(function (r) { return r.json(); })
+          .then(render)
+          .catch(function () {
+            // static fallback already in HTML — no action needed
+          });
+      });
+  }
+
+  // GA4 outbound event tracking
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('[data-ga-event]');
+    if (!el) return;
+    if (typeof gtag === 'function') {
+      gtag('event', el.dataset.gaEvent, {
+        destination: el.dataset.gaDestination || '',
+        link_url: el.href || '',
+        section: el.dataset.gaSection || ''
+      });
+    }
+  });
+
+  loadState();
+})();
+</script>
 </body>
 </html>
