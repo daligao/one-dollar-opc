@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0BP5M4XY6"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Z0BP5M4XY6');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Free One-Person Company Playbook — $1 OPC</title>
+  <meta name="description" content="Everything I'm learning while trying to build a one-person internet company from $0. 12 lessons. Free. No guru promises.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://one-dollar.ordinarymantrying.com/playbook/">
+  <meta property="og:title" content="The Free One-Person Company Playbook — $1 OPC">
+  <meta property="og:description" content="What I'm learning while building a one-person internet company from $0. 12 lessons. Free.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://one-dollar.ordinarymantrying.com/playbook/">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #fafaf9; --text: #1c1c1a; --muted: #6b6b63; --accent: #2563eb;
+      --border: #e4e4e0; --card: #ffffff; --hero-bg: #111110;
+      --hero-text: #f5f5f3; --hero-muted: #9ca3a0;
+      --mono: 'Courier New', Courier, monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; font-size: 16px; }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(250,250,249,0.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 1.5rem; }
+    .nav-inner { max-width: 920px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 52px; gap: 0.75rem; }
+    .nav-brand { font-family: var(--mono); font-weight: 700; font-size: 0.9rem; color: var(--text); text-decoration: none; white-space: nowrap; letter-spacing: 0.02em; }
+    .nav-links { display: flex; align-items: center; gap: 0.1rem; list-style: none; }
+    .nav-links a { font-size: 0.8rem; color: var(--muted); text-decoration: none; padding: 0.3rem 0.55rem; border-radius: 4px; transition: color 0.15s; }
+    .nav-links a:hover, .nav-links a[aria-current] { color: var(--text); }
+    .nav-omt { font-size: 0.8rem; font-weight: 600; color: var(--accent); text-decoration: none; white-space: nowrap; }
+    .nav-omt:hover { text-decoration: underline; }
+    .container { max-width: 860px; margin: 0 auto; }
+    section { padding: 4.5rem 1.5rem; }
+    #hero { background: var(--hero-bg); color: var(--hero-text); padding: 5.5rem 1.5rem 4.5rem; }
+    .eyebrow { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--hero-muted); margin-bottom: 1.25rem; }
+    #hero h1 { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 800; line-height: 1.12; letter-spacing: -0.025em; margin-bottom: 1.25rem; }
+    .hero-sub { font-size: 1.05rem; color: var(--hero-muted); line-height: 1.8; margin-bottom: 1.5rem; font-style: italic; }
+    .hero-body { font-size: 0.93rem; color: var(--hero-muted); line-height: 1.9; }
+    .hero-body p + p { margin-top: 0.6rem; }
+    .status-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
+    .status-chip { font-family: var(--mono); font-size: 0.76rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: var(--hero-text); padding: 0.3rem 0.7rem; border-radius: 4px; }
+    .section-label { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
+    h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 0.85rem; }
+    .lead { font-size: 1rem; color: var(--muted); line-height: 1.72; margin-bottom: 1.5rem; }
+    .lessons-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin-top: 1.75rem; }
+    .lesson-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1.4rem; text-decoration: none; color: var(--text); display: block; transition: border-color 0.15s, box-shadow 0.15s; }
+    .lesson-card:hover { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37,99,235,0.08); }
+    .lesson-card:hover .lc-title { color: var(--accent); }
+    .lc-num { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+    .lc-title { font-size: 0.95rem; font-weight: 700; line-height: 1.35; margin-bottom: 0.5rem; }
+    .lc-takeaway { font-size: 0.78rem; color: var(--muted); line-height: 1.55; font-style: italic; }
+    footer { padding: 2rem 1.5rem; border-top: 1px solid var(--border); text-align: center; }
+    .footer-brand { font-family: var(--mono); font-size: 0.8rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
+    .footer-tagline { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.75rem; }
+    .footer-links { font-size: 0.78rem; color: var(--muted); }
+    .footer-links a { color: var(--accent); text-decoration: none; }
+    .footer-links a:hover { text-decoration: underline; }
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links { display: none; }
+      section { padding: 3rem 1rem; }
+      #hero { padding: 3.5rem 1rem 3rem; }
+      .lessons-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<nav aria-label="Site navigation">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/">$1 OPC</a>
+    <ul class="nav-links" role="list">
+      <li><a href="/">Dashboard</a></li>
+      <li><a href="/playbook/" aria-current="page">Playbook</a></li>
+      <li><a href="/manifesto/">Manifesto</a></li>
+      <li><a href="/contact/">Contact</a></li>
+    </ul>
+    <a class="nav-omt" href="https://ordinarymantrying.com/?utm_source=one-dollar&utm_medium=nav&utm_campaign=opc_experiment" target="_blank" rel="noopener">Ordinary Man Trying&nbsp;↗</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="container">
+    <p class="eyebrow">Free · 12 Lessons</p>
+    <h1>The Free One-Person Company Playbook</h1>
+    <p class="hero-sub">Everything I'm learning while trying to build a one-person internet company from $0.</p>
+    <div class="hero-body">
+      <p>No guru promises. No get-rich-quick claims. No pretending I've already figured everything out.</p>
+      <p>I'm building websites, running experiments, measuring what happens, making mistakes, and writing down what I learn along the way.</p>
+      <p>Everything here is free.</p>
+    </div>
+    <div class="status-bar">
+      <span class="status-chip">Company revenue: <span id="pb-revenue">$0</span></span>
+      <span class="status-chip">Mission: <span id="pb-mission">Earn the first real dollar online</span></span>
+      <span class="status-chip">Playbook status: In progress</span>
+    </div>
+  </div>
+</section>
+
+<section id="lessons">
+  <div class="container">
+    <p class="section-label">The Curriculum</p>
+    <h2>12 Lessons</h2>
+    <p class="lead">One idea per lesson. Each one practical. Each one something I am actively learning or testing.</p>
+    <div class="lessons-grid">
+      <a class="lesson-card" href="/playbook/01/">
+        <p class="lc-num">Lesson 01</p>
+        <p class="lc-title">What Is a One-Person Company?</p>
+        <p class="lc-takeaway">A one-person company is not about doing everything yourself. It's about building a system that keeps creating value.</p>
+      </a>
+      <a class="lesson-card" href="/playbook/02/">
+        <p class="lc-num">Lesson 02</p>
+        <p class="lc-title">From Building Projects to Building Assets</p>
+        <p class="lc-takeaway">Don't just aim to build it. Aim to keep it.</p>
+      </a>
+      <a class="lesson-card" href="/playbook/03/">
+        <p class="lc-num">Lesson 03</p>
+        <p class="lc-title">Find the Problem First, Then Build</p>
+        <p class="lc-takeaway">Don't build because AI can. Build because users need it.</p>
+      </a>
+      <a class="lesson-card" href="/playbook/04/">
+        <p class="lc-num">Lesson 04</p>
+        <p class="lc-title">Build → Measure → Decide</p>
+        <p class="lc-takeaway">Launching a website is not the end of the project. It's the start of the experiment.</p>
+      </a>
+      <a class="lesson-card" href="/playbook/05/">
+        <p class="lc-num">Lesson 05</p>
+        <p class="lc-title">The Traffic System</p>
+        <p class="lc-takeaway">Products determine why users stay. Distribution determines whether users can find you.</p>
+      </a>
+      <a class="lesson-card" href="/playbook/06/">
+        <p class="lc-num">Lesson 06</p>
+        <p class="lc-title">The First Dollar</p>
+        <p class="lc-takeaway">The first dollar is not about money. It's proof that a stranger will pay for what you built.</p>
+      </a>
+      <a class="lesson-card" href="/playbook/07/">
+        <p class="lc-num">Lesson 07</p>
+        <p class="lc-title">The Numbers Every Founder Needs to Understand</p>
+        <p class="lc-takeaway">Traffic is noise. Revenue is validation. Profit determines whether the business can survive.</p>
+      </a>
+      <a class="lesson-card" href="/playbook/08/">
+        <p class="lc-num">Lesson 08</p>
+        <p class="lc-title">SOPs, Templates, AI and Automation</p>
+        <p class="lc-takeaway">A one-person company scales not by hiring, but by standardizing and creating leverage.</p>
+      </a>
+      <a class="lesson-card" href="/playbook/09/">
+        <p class="lc-num">Lesson 09</p>
+        <p class="lc-title">Portfolio Management</p>
+        <p class="lc-takeaway">The most important OPC skill is not doing more. It's knowing where to focus limited resources.</p>
+      </a>
+      <a class="lesson-card" href="/playbook/10/">
+        <p class="lc-num">Lesson 10</p>
+        <p class="lc-title">Brand, Trust and the Founder Story</p>
+        <p class="lc-takeaway">In the AI era, long-term records and genuine trust become harder to copy and more valuable.</p>
+      </a>
+      <a class="lesson-card" href="/playbook/11/">
+        <p class="lc-num">Lesson 11</p>
+        <p class="lc-title">Risk Management for a One-Person Company</p>
+        <p class="lc-takeaway">One of the OPC's greatest advantages is staying in the game long enough.</p>
+      </a>
+      <a class="lesson-card" href="/playbook/12/">
+        <p class="lc-num">Lesson 12</p>
+        <p class="lc-title">From $1 to Sustainable Income</p>
+        <p class="lc-takeaway">The real goal is not to earn once. It's to build a system that creates repeatable value.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-brand">The $1 OPC Experiment</p>
+  <p class="footer-tagline">One Person. One Laptop. One Dollar Domain.</p>
+  <p class="footer-links">
+    <a href="/">Dashboard</a> &middot;
+    <a href="/playbook/">Playbook</a> &middot;
+    <a href="/manifesto/">Manifesto</a> &middot;
+    <a href="/contact/">Contact</a> &middot;
+    <a href="https://ordinarymantrying.com/?utm_source=one-dollar&utm_medium=footer&utm_campaign=opc_experiment" target="_blank" rel="noopener">Ordinary Man Trying ↗</a>
+  </p>
+</footer>
+<script>
+(function(){
+  fetch('/api/state').then(function(r){return r.ok?r.json():Promise.reject()}).then(set)
+  .catch(function(){fetch('/data/company.json').then(function(r){return r.json()}).then(set).catch(function(){})});
+  function set(s){
+    var r=document.getElementById('pb-revenue'); if(r&&s.revenue!=null) r.textContent=s.revenue?'$'+s.revenue:'$0';
+    var m=document.getElementById('pb-mission'); if(m&&s.current_mission) m.textContent=s.current_mission;
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html><html lang="en"><head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0BP5M4XY6"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Z0BP5M4XY6');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 04: Build → Measure → Decide — OPC Playbook</title>
+<meta name="description" content="Launching a website is not the end of the project. It's the start of the experiment.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://one-dollar.ordinarymantrying.com/playbook/04/">
+<meta property="og:title" content="Lesson 04: Build → Measure → Decide">
+<meta property="og:url" content="https://one-dollar.ordinarymantrying.com/playbook/04/">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--bg:#fafaf9;--text:#1c1c1a;--muted:#6b6b63;--accent:#2563eb;--border:#e4e4e0;--card:#ffffff;--hero-bg:#111110;--hero-text:#f5f5f3;--hero-muted:#9ca3a0;--mono:'Courier New',Courier,monospace;}
+html{scroll-behavior:smooth;}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(250,250,249,0.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 1.5rem;}
+.nav-inner{max-width:920px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:52px;gap:.75rem;}
+.nav-brand{font-family:var(--mono);font-weight:700;font-size:.9rem;color:var(--text);text-decoration:none;white-space:nowrap;letter-spacing:.02em;}
+.nav-links{display:flex;align-items:center;gap:.1rem;list-style:none;}
+.nav-links a{font-size:.8rem;color:var(--muted);text-decoration:none;padding:.3rem .55rem;border-radius:4px;transition:color .15s;}
+.nav-links a:hover,.nav-links a[aria-current]{color:var(--text);}
+.nav-omt{font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none;white-space:nowrap;}
+.nav-omt:hover{text-decoration:underline;}
+.container{max-width:720px;margin:0 auto;}section{padding:4.5rem 1.5rem;}
+#hero{background:var(--hero-bg);color:var(--hero-text);padding:4.5rem 1.5rem 3.5rem;}
+.breadcrumb{font-family:var(--mono);font-size:.7rem;color:var(--hero-muted);margin-bottom:1.25rem;}
+.breadcrumb a{color:var(--hero-muted);text-decoration:none;}.breadcrumb a:hover{color:var(--hero-text);}
+.lesson-num{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--hero-muted);margin-bottom:.5rem;}
+#hero h1{font-size:clamp(1.7rem,4.5vw,2.6rem);font-weight:800;line-height:1.15;letter-spacing:-.025em;}
+h2{font-size:1.15rem;font-weight:700;letter-spacing:-.01em;margin:2rem 0 .75rem;}
+p{font-size:.95rem;color:var(--muted);line-height:1.8;margin-bottom:.75rem;}p:last-child{margin-bottom:0;}strong{color:var(--text);}
+.mono-block{font-family:var(--mono);font-size:.82rem;background:#f8f8f6;border:1px solid var(--border);border-radius:6px;padding:1rem 1.25rem;line-height:1.9;color:var(--text);margin:1rem 0;}
+.decide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin:1.25rem 0;}
+.decide-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem;text-align:center;}
+.dc-label{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.4rem;}
+.dc-val{font-size:.9rem;font-weight:700;color:var(--text);}
+.takeaway{border-left:3px solid var(--accent);padding:.85rem 1.1rem;margin:2.5rem 0;background:#f0f4ff;}
+.takeaway p{font-size:.95rem;color:var(--text);font-weight:600;font-style:italic;margin:0;line-height:1.55;}
+.lesson-nav{display:flex;justify-content:space-between;gap:1rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);flex-wrap:wrap;}
+.lesson-nav a{font-size:.85rem;font-weight:600;color:var(--accent);text-decoration:none;}.lesson-nav a:hover{text-decoration:underline;}
+footer{padding:2rem 1.5rem;border-top:1px solid var(--border);text-align:center;}
+.footer-brand{font-family:var(--mono);font-size:.8rem;font-weight:700;color:var(--text);margin-bottom:.2rem;}
+.footer-tagline{font-size:.78rem;color:var(--muted);margin-bottom:.75rem;}
+.footer-links{font-size:.78rem;color:var(--muted);}.footer-links a{color:var(--accent);text-decoration:none;}.footer-links a:hover{text-decoration:underline;}
+@media(max-width:640px){nav{padding:0 1rem;}.nav-links{display:none;}section{padding:3rem 1rem;}#hero{padding:3rem 1rem 2.5rem;}.decide-grid{grid-template-columns:1fr;}}
+</style></head><body>
+<nav aria-label="Site navigation"><div class="nav-inner">
+<a class="nav-brand" href="/">$1 OPC</a>
+<ul class="nav-links" role="list">
+<li><a href="/">Dashboard</a></li><li><a href="/playbook/" aria-current="true">Playbook</a></li>
+<li><a href="/manifesto/">Manifesto</a></li><li><a href="/contact/">Contact</a></li>
+</ul>
+<a class="nav-omt" href="https://ordinarymantrying.com/?utm_source=one-dollar&utm_medium=nav&utm_campaign=opc_experiment" target="_blank" rel="noopener">Ordinary Man Trying&nbsp;↗</a>
+</div></nav>
+<section id="hero"><div class="container">
+<p class="breadcrumb"><a href="/playbook/">← Playbook</a></p>
+<p class="lesson-num">Lesson 04 of 12</p>
+<h1>Build → Measure → Decide</h1>
+</div></section>
+<section><div class="container">
+<h2>The Core Operating Loop</h2>
+<p>Most people build like this:</p>
+<div class="mono-block">Build → Build → Build → Build → Build</div>
+<p>The OPC approach is different:</p>
+<div class="mono-block">Build → Measure → Decide → Build → Measure → Decide</div>
+<p>Each cycle takes you closer to something that actually works.</p>
+
+<h2>Build: Start Smaller Than You Think</h2>
+<p>Launch the minimum version that is genuinely useful. Not the finished version. Not the version with every feature.</p>
+<p>Don't start with: 100 articles, 20 features, a membership system, an app, a community, and an AI assistant.</p>
+<p><strong>Solve one problem first.</strong></p>
+
+<h2>Measure: Follow the User Journey</h2>
+<p>After launch, watch this funnel:</p>
+<div class="mono-block">Google impressions (does anyone see it?)
+    ↓
+Visitors (does anyone click?)
+    ↓
+Tool / page usage (does anyone engage?)
+    ↓
+CTA clicks (does anyone take action?)
+    ↓
+Checkout (does anyone try to pay?)
+    ↓
+Payment (does anyone actually pay?)</div>
+<p>Don't just track pageviews. Watch whether users complete the actions you actually want them to take.</p>
+
+<h2>Decide: Three Options Only</h2>
+<div class="decide-grid">
+<div class="decide-card"><p class="dc-label">Scale up</p><p class="dc-val">Working. Put in more.</p></div>
+<div class="decide-card"><p class="dc-label">Keep watching</p><p class="dc-val">Too early. Wait for data.</p></div>
+<div class="decide-card"><p class="dc-label">Stop</p><p class="dc-val">Not working. Move on.</p></div>
+</div>
+<p>"Stop" is a legitimate business decision. One of the most common OPC mistakes is keeping a dead project alive because of time already spent — that is a sunk cost, not a reason to continue.</p>
+
+<div class="takeaway">
+<p>"Launching a website is not the end of the project. It's the start of the experiment."</p>
+</div>
+<div class="lesson-nav">
+<a href="/playbook/03/">← Lesson 03</a>
+<a href="/playbook/05/">Lesson 05: The Traffic System →</a>
+</div>
+</div></section>
+<footer>
+<p class="footer-brand">The $1 OPC Experiment</p>
+<p class="footer-tagline">One Person. One Laptop. One Dollar Domain.</p>
+<p class="footer-links"><a href="/">Dashboard</a> &middot; <a href="/playbook/">Playbook</a> &middot; <a href="/manifesto/">Manifesto</a> &middot; <a href="/contact/">Contact</a> &middot; <a href="https://ordinarymantrying.com/?utm_source=one-dollar&utm_medium=footer&utm_campaign=opc_experiment" target="_blank" rel="noopener">Ordinary Man Trying ↗</a></p>
+</footer></body></html>

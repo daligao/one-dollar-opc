@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="en"><head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0BP5M4XY6"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Z0BP5M4XY6');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 08: SOPs, Templates, AI and Automation — OPC Playbook</title>
+<meta name="description" content="A one-person company scales not by hiring, but by standardizing and creating leverage.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://one-dollar.ordinarymantrying.com/playbook/08/">
+<meta property="og:title" content="Lesson 08: SOPs, Templates, AI and Automation">
+<meta property="og:url" content="https://one-dollar.ordinarymantrying.com/playbook/08/">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--bg:#fafaf9;--text:#1c1c1a;--muted:#6b6b63;--accent:#2563eb;--border:#e4e4e0;--card:#ffffff;--hero-bg:#111110;--hero-text:#f5f5f3;--hero-muted:#9ca3a0;--mono:'Courier New',Courier,monospace;}
+html{scroll-behavior:smooth;}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(250,250,249,0.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 1.5rem;}
+.nav-inner{max-width:920px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:52px;gap:.75rem;}
+.nav-brand{font-family:var(--mono);font-weight:700;font-size:.9rem;color:var(--text);text-decoration:none;white-space:nowrap;letter-spacing:.02em;}
+.nav-links{display:flex;align-items:center;gap:.1rem;list-style:none;}
+.nav-links a{font-size:.8rem;color:var(--muted);text-decoration:none;padding:.3rem .55rem;border-radius:4px;transition:color .15s;}
+.nav-links a:hover,.nav-links a[aria-current]{color:var(--text);}
+.nav-omt{font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none;white-space:nowrap;}
+.nav-omt:hover{text-decoration:underline;}
+.container{max-width:720px;margin:0 auto;}section{padding:4.5rem 1.5rem;}
+#hero{background:var(--hero-bg);color:var(--hero-text);padding:4.5rem 1.5rem 3.5rem;}
+.breadcrumb{font-family:var(--mono);font-size:.7rem;color:var(--hero-muted);margin-bottom:1.25rem;}
+.breadcrumb a{color:var(--hero-muted);text-decoration:none;}.breadcrumb a:hover{color:var(--hero-text);}
+.lesson-num{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--hero-muted);margin-bottom:.5rem;}
+#hero h1{font-size:clamp(1.7rem,4.5vw,2.6rem);font-weight:800;line-height:1.15;letter-spacing:-.025em;}
+h2{font-size:1.15rem;font-weight:700;letter-spacing:-.01em;margin:2rem 0 .75rem;}
+p{font-size:.95rem;color:var(--muted);line-height:1.8;margin-bottom:.75rem;}p:last-child{margin-bottom:0;}strong{color:var(--text);}
+.mono-block{font-family:var(--mono);font-size:.82rem;background:#f8f8f6;border:1px solid var(--border);border-radius:6px;padding:1rem 1.25rem;line-height:1.9;color:var(--text);margin:1rem 0;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.25rem 0;}
+.col-block{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;}
+.col-label{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.6rem;}
+.col-block p{font-size:.85rem;}
+.ai-list{list-style:none;margin:1rem 0;}
+.ai-list li{padding:.45rem 0;border-bottom:1px solid var(--border);font-size:.9rem;display:flex;gap:.75rem;align-items:baseline;}
+.ai-list li:last-child{border-bottom:none;}
+.ai-list li::before{content:'✓ ';font-family:var(--mono);color:var(--accent);font-size:.75rem;flex-shrink:0;}
+.warning-box{background:#fff0f0;border:1px solid #fca5a5;border-radius:8px;padding:1rem 1.25rem;margin:1.25rem 0;}
+.warning-box p{color:#991b1b;font-size:.88rem;margin:0;}
+.takeaway{border-left:3px solid var(--accent);padding:.85rem 1.1rem;margin:2.5rem 0;background:#f0f4ff;}
+.takeaway p{font-size:.95rem;color:var(--text);font-weight:600;font-style:italic;margin:0;line-height:1.55;}
+.lesson-nav{display:flex;justify-content:space-between;gap:1rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);flex-wrap:wrap;}
+.lesson-nav a{font-size:.85rem;font-weight:600;color:var(--accent);text-decoration:none;}.lesson-nav a:hover{text-decoration:underline;}
+footer{padding:2rem 1.5rem;border-top:1px solid var(--border);text-align:center;}
+.footer-brand{font-family:var(--mono);font-size:.8rem;font-weight:700;color:var(--text);margin-bottom:.2rem;}
+.footer-tagline{font-size:.78rem;color:var(--muted);margin-bottom:.75rem;}
+.footer-links{font-size:.78rem;color:var(--muted);}.footer-links a{color:var(--accent);text-decoration:none;}.footer-links a:hover{text-decoration:underline;}
+@media(max-width:640px){nav{padding:0 1rem;}.nav-links{display:none;}section{padding:3rem 1rem;}#hero{padding:3rem 1rem 2.5rem;}.two-col{grid-template-columns:1fr;}}
+</style></head><body>
+<nav aria-label="Site navigation"><div class="nav-inner">
+<a class="nav-brand" href="/">$1 OPC</a>
+<ul class="nav-links" role="list">
+<li><a href="/">Dashboard</a></li><li><a href="/playbook/" aria-current="true">Playbook</a></li>
+<li><a href="/manifesto/">Manifesto</a></li><li><a href="/contact/">Contact</a></li>
+</ul>
+<a class="nav-omt" href="https://ordinarymantrying.com/?utm_source=one-dollar&utm_medium=nav&utm_campaign=opc_experiment" target="_blank" rel="noopener">Ordinary Man Trying&nbsp;↗</a>
+</div></nav>
+<section id="hero"><div class="container">
+<p class="breadcrumb"><a href="/playbook/">← Playbook</a></p>
+<p class="lesson-num">Lesson 08 of 12</p>
+<h1>SOPs, Templates, AI and Automation</h1>
+</div></section>
+<section><div class="container">
+<h2>The Only Way a One-Person Company Scales</h2>
+<p>A company with one person cannot scale by adding more people. It scales by doing the same work with less effort each time it repeats.</p>
+<p>There are three tools for this:</p>
+<div class="mono-block">SOPs      → Write down how to do it once
+Templates → Reuse the structure every time
+AI + Automation → Do the repeatable parts without you</div>
+
+<h2>Standardize First, Then Automate</h2>
+<p>This is a common mistake: automating a process you do not yet understand.</p>
+<div class="two-col">
+<div class="col-block">
+<p class="col-label">Wrong order</p>
+<p>Build automation → discover edge cases → rebuild automation → repeat forever</p>
+</div>
+<div class="col-block">
+<p class="col-label">Right order</p>
+<p>Do it manually → document each step → automate the steps that are truly repetitive</p>
+</div>
+</div>
+<p>The manual version teaches you what actually happens. The SOP captures what you learned. The automation only handles what is genuinely consistent.</p>
+
+<h2>What AI Is Actually Good For</h2>
+<ul class="ai-list">
+<li>First draft of any writing: articles, product descriptions, emails</li>
+<li>Researching a topic quickly before you go deeper</li>
+<li>Generating code that handles routine patterns</li>
+<li>Reviewing what you wrote for gaps or errors</li>
+<li>Translating and adapting content for different audiences</li>
+</ul>
+
+<h2>What AI Cannot Replace</h2>
+<div class="warning-box">
+<p><strong>Judgment.</strong> Deciding which project to build. Which channel to use. When to stop. What the user actually needs. These require your real-world knowledge of your specific context. AI can inform the decision. It cannot make it for you.</p>
+</div>
+
+<h2>The Template Mindset</h2>
+<p>Every time you build something new — a page, an article, a tool — ask: "Would I build this again?" If yes, turn it into a template now, before you forget how you made it.</p>
+<p>The $1 OPC Experiment uses: a page template for all playbook lessons, an article template for OMT blog posts, and a launch checklist for every new tool or website.</p>
+<p>Templates are reusable effort. They are one of the most underrated assets a one-person company can own.</p>
+
+<div class="takeaway">
+<p>"A one-person company scales not by hiring, but by standardizing and creating leverage."</p>
+</div>
+<div class="lesson-nav">
+<a href="/playbook/07/">← Lesson 07</a>
+<a href="/playbook/09/">Lesson 09: Portfolio Management →</a>
+</div>
+</div></section>
+<footer>
+<p class="footer-brand">The $1 OPC Experiment</p>
+<p class="footer-tagline">One Person. One Laptop. One Dollar Domain.</p>
+<p class="footer-links"><a href="/">Dashboard</a> &middot; <a href="/playbook/">Playbook</a> &middot; <a href="/manifesto/">Manifesto</a> &middot; <a href="/contact/">Contact</a> &middot; <a href="https://ordinarymantrying.com/?utm_source=one-dollar&utm_medium=footer&utm_campaign=opc_experiment" target="_blank" rel="noopener">Ordinary Man Trying ↗</a></p>
+</footer></body></html>
