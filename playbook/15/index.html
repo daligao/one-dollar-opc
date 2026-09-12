@@ -1,0 +1,433 @@
+<!DOCTYPE html><html lang="en"><head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0BP5M4XY6"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Z0BP5M4XY6');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 15: SOPs, AI and Automation — OPC Playbook</title>
+<meta name="description" content="The goal is not full automation. It's getting the system to run, AI to assist, and you to make decisions — instead of fighting fires all day.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://one-dollar.ordinarymantrying.com/playbook/15/">
+<meta property="og:title" content="Lesson 15: SOPs, AI and Automation — Make the System Work So You Don't Have To">
+<meta property="og:url" content="https://one-dollar.ordinarymantrying.com/playbook/15/">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--bg:#fafaf9;--text:#1c1c1a;--muted:#6b6b63;--accent:#2563eb;--border:#e4e4e0;--card:#ffffff;--hero-bg:#111110;--hero-text:#f5f5f3;--hero-muted:#9ca3a0;--mono:'Courier New',Courier,monospace;}
+html{scroll-behavior:smooth;}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(250,250,249,0.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 1.5rem;}
+.nav-inner{max-width:920px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:52px;gap:.75rem;}
+.nav-brand{font-family:var(--mono);font-weight:700;font-size:.9rem;color:var(--text);text-decoration:none;white-space:nowrap;letter-spacing:.02em;}
+.nav-links{display:flex;align-items:center;gap:.1rem;list-style:none;}
+.nav-links a{font-size:.8rem;color:var(--muted);text-decoration:none;padding:.3rem .55rem;border-radius:4px;transition:color .15s;}
+.nav-links a:hover,.nav-links a[aria-current]{color:var(--text);}
+.nav-omt{font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none;white-space:nowrap;}
+.nav-omt:hover{text-decoration:underline;}
+.container{max-width:720px;margin:0 auto;}section{padding:4.5rem 1.5rem;}
+#hero{background:var(--hero-bg);color:var(--hero-text);padding:4.5rem 1.5rem 3.5rem;}
+.breadcrumb{font-family:var(--mono);font-size:.7rem;color:var(--hero-muted);margin-bottom:1.25rem;}
+.breadcrumb a{color:var(--hero-muted);text-decoration:none;}.breadcrumb a:hover{color:var(--hero-text);}
+.lesson-num{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--hero-muted);margin-bottom:.5rem;}
+#hero h1{font-size:clamp(1.65rem,4.5vw,2.5rem);font-weight:800;line-height:1.15;letter-spacing:-.025em;}
+h2{font-size:1.12rem;font-weight:700;letter-spacing:-.01em;margin:2.25rem 0 .7rem;}
+h2:first-of-type{margin-top:0;}
+p{font-size:.95rem;color:var(--muted);line-height:1.8;margin-bottom:.75rem;}p:last-child{margin-bottom:0;}strong{color:var(--text);}
+.mono-block{font-family:var(--mono);font-size:.82rem;background:#f8f8f6;border:1px solid var(--border);border-radius:6px;padding:1rem 1.25rem;line-height:1.9;color:var(--text);margin:1rem 0;}
+/* sequence arrow */
+.sequence{font-family:var(--mono);font-size:.82rem;background:var(--hero-bg);color:#6ee7b7;border-radius:8px;padding:1rem 1.5rem;line-height:2;margin:1rem 0;}
+/* checklist */
+.launch-checklist{list-style:none;margin:1rem 0;border:1px solid var(--border);border-radius:8px;overflow:hidden;columns:2;column-gap:0;}
+.launch-checklist li{padding:.5rem 1rem;border-bottom:1px solid var(--border);font-size:.82rem;color:var(--text);display:flex;gap:.5rem;break-inside:avoid;}
+.launch-checklist li:last-child{border-bottom:none;}
+.lc-box{width:12px;height:12px;border:1.5px solid var(--accent);border-radius:2px;flex-shrink:0;margin-top:.25rem;}
+/* sop table */
+.sop-table{width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:.85rem;}
+.sop-table th{text-align:left;padding:.55rem .75rem;border-bottom:2px solid var(--border);font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
+.sop-table td{padding:.5rem .75rem;border-bottom:1px solid var(--border);vertical-align:top;}
+.sop-table td:first-child{color:var(--text);font-weight:600;white-space:nowrap;}
+.sop-table td:last-child{color:var(--muted);}
+.sop-table tr:last-child td{border-bottom:none;}
+/* ai columns */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.25rem 0;}
+.col-block{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;}
+.col-label{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.6rem;}
+.col-block ul{list-style:none;margin:0;}
+.col-block li{font-size:.85rem;padding:.25rem 0;border-bottom:1px solid var(--border);color:var(--text);}
+.col-block li:last-child{border-bottom:none;}
+.col-block li::before{content:'· ';font-family:var(--mono);color:var(--accent);}
+/* three questions */
+.q-list{list-style:none;margin:1.25rem 0;counter-reset:qs;}
+.q-list li{counter-increment:qs;padding:.9rem 0;border-bottom:1px solid var(--border);display:flex;gap:.9rem;align-items:flex-start;}
+.q-list li:last-child{border-bottom:none;}
+.q-num{font-family:var(--mono);font-size:.8rem;font-weight:700;color:var(--accent);min-width:20px;flex-shrink:0;padding-top:.1rem;}
+.q-body p{font-size:.9rem;color:var(--text);font-weight:600;margin-bottom:.25rem;}
+.q-body small{font-size:.82rem;color:var(--muted);line-height:1.6;}
+/* levels */
+.level-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.65rem;margin:1.25rem 0;}
+.level-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.9rem 1rem;text-align:center;}
+.lv-num{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.3rem;}
+.lv-title{font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:.3rem;}
+.lv-eg{font-size:.75rem;color:var(--muted);line-height:1.5;}
+/* hitl */
+.hitl-block{background:#faf5ff;border:1px solid #d8b4fe;border-radius:10px;padding:1.5rem;margin:1.25rem 0;}
+.hitl-block p{font-size:.92rem;color:var(--text);}
+/* roles */
+.roles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin:1.25rem 0;}
+.role-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.9rem 1rem;}
+.rc-label{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.45rem;}
+.rc-list{list-style:none;margin:0;}
+.rc-list li{font-size:.8rem;color:var(--text);padding:.2rem 0;border-bottom:1px solid var(--border);line-height:1.45;}
+.rc-list li:last-child{border-bottom:none;}
+/* priority table */
+.priority-table{width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:.83rem;}
+.priority-table th{text-align:left;padding:.5rem .75rem;border-bottom:2px solid var(--border);font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
+.priority-table td{padding:.45rem .75rem;border-bottom:1px solid var(--border);vertical-align:top;color:var(--muted);}
+.priority-table td:first-child{font-weight:600;color:var(--text);}
+.priority-table .badge{font-family:var(--mono);font-size:.68rem;padding:.1rem .45rem;border-radius:4px;white-space:nowrap;}
+.badge-high{background:#fef9c3;color:#854d0e;}
+.badge-critical{background:#fce7f3;color:#9d174d;}
+.priority-table tr:last-child td{border-bottom:none;}
+/* warning/correction */
+.warning-box{background:#fff8e1;border:1px solid #f0d060;border-radius:8px;padding:1rem 1.25rem;margin:1.25rem 0;}
+.warning-box p{font-size:.88rem;color:#92400e;margin:0;line-height:1.65;}
+.correction-box{background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:1rem 1.25rem;margin:1.25rem 0;}
+.correction-box p{font-size:.88rem;color:#14532d;margin:0;line-height:1.65;}
+.eight-list{list-style:none;margin:1.25rem 0;counter-reset:eights;}
+.eight-list li{counter-increment:eights;padding:.8rem 0;border-bottom:1px solid var(--border);display:flex;gap:.85rem;align-items:baseline;font-size:.92rem;color:var(--muted);}
+.eight-list li strong{color:var(--text);}
+.eight-list li:last-child{border-bottom:none;}
+.eight-list li::before{content:counter(eights);font-family:var(--mono);font-size:.75rem;font-weight:700;color:var(--accent);min-width:18px;flex-shrink:0;}
+.takeaway{border-left:3px solid var(--accent);padding:.85rem 1.1rem;margin:2.5rem 0;background:#f0f4ff;}
+.takeaway p{font-size:.95rem;color:var(--text);font-weight:600;font-style:italic;margin:0;line-height:1.55;}
+.lesson-nav{display:flex;justify-content:space-between;gap:1rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);flex-wrap:wrap;}
+.lesson-nav a{font-size:.85rem;font-weight:600;color:var(--accent);text-decoration:none;}.lesson-nav a:hover{text-decoration:underline;}
+footer{padding:2rem 1.5rem;border-top:1px solid var(--border);text-align:center;}
+.footer-brand{font-family:var(--mono);font-size:.8rem;font-weight:700;color:var(--text);margin-bottom:.2rem;}
+.footer-tagline{font-size:.78rem;color:var(--muted);margin-bottom:.75rem;}
+.footer-links{font-size:.78rem;color:var(--muted);}.footer-links a{color:var(--accent);text-decoration:none;}.footer-links a:hover{text-decoration:underline;}
+@media(max-width:640px){nav{padding:0 1rem;}.nav-links{display:none;}section{padding:3rem 1rem;}#hero{padding:3rem 1rem 2.5rem;}.two-col{grid-template-columns:1fr;}.level-grid{grid-template-columns:1fr 1fr;}.roles-grid{grid-template-columns:1fr;}.launch-checklist{columns:1;}}
+</style></head><body>
+<nav aria-label="Site navigation"><div class="nav-inner">
+<a class="nav-brand" href="/">$1 OPC</a>
+<ul class="nav-links" role="list">
+<li><a href="/">Dashboard</a></li><li><a href="/playbook/" aria-current="true">Playbook</a></li>
+<li><a href="/manifesto/">Manifesto</a></li><li><a href="/contact/">Contact</a></li>
+</ul>
+<a class="nav-omt" href="https://ordinarymantrying.com/?utm_source=one-dollar&utm_medium=nav&utm_campaign=opc_experiment" target="_blank" rel="noopener">Ordinary Man Trying&nbsp;↗</a>
+</div></nav>
+
+<section id="hero"><div class="container">
+<p class="breadcrumb"><a href="/playbook/">← Playbook</a></p>
+<p class="lesson-num">Lesson 15</p>
+<h1>SOPs, AI and Automation — Make the System Work</h1>
+</div></section>
+
+<section><div class="container">
+
+<h2>The Sequence That Most People Get Wrong</h2>
+<p>This lesson is not about learning Zapier or Make. It is about something more fundamental:</p>
+<div class="sequence">Do it manually → Document the steps (SOP) → Build a template
+      ↓
+AI assists the repetitive parts
+      ↓
+Automate what is fully stable
+      ↓
+You handle only exceptions</div>
+<p>The sequence matters. <strong>Automating a process you do not yet understand produces automated mistakes at scale.</strong> First do it right. Then write it down. Then let the machine do the repeating.</p>
+
+<h2>Why SOPs Are Not Optional Beyond the First Site</h2>
+<p>With one website, you can hold everything in your head: where GA4 is, how the sitemap is set up, what to check before launch, what the prompts are.</p>
+<p>With six websites, your memory becomes a single point of failure. With ten, it breaks entirely.</p>
+<p>The deeper problem is not remembering <em>what</em> to do. It is the decision cost of figuring it out again from scratch every single time. Every re-decided question was already answered the last time — and the answer was the same. SOP captures that answer so you never pay that cost twice.</p>
+
+<h2>A Good SOP Is a Short Checklist</h2>
+<p>Most corporate SOPs fail because they are 40-page documents that no one reads. An OPC SOP should be a checklist you can act on in real time.</p>
+<p>Example — New Website Launch:</p>
+<ul class="launch-checklist">
+<li><span class="lc-box"></span>Domain connected &amp; HTTPS works</li>
+<li><span class="lc-box"></span>Canonical URL correct</li>
+<li><span class="lc-box"></span>robots.txt checked</li>
+<li><span class="lc-box"></span>sitemap.xml accessible</li>
+<li><span class="lc-box"></span>GA4 installed and firing</li>
+<li><span class="lc-box"></span>GSC property verified</li>
+<li><span class="lc-box"></span>Privacy page live</li>
+<li><span class="lc-box"></span>Contact page live</li>
+<li><span class="lc-box"></span>Mobile rendering tested</li>
+<li><span class="lc-box"></span>Broken links checked</li>
+<li><span class="lc-box"></span>Custom 404 page set</li>
+<li><span class="lc-box"></span>Cloudflare deploy verified</li>
+<li><span class="lc-box"></span>GitHub repo backed up</li>
+<li><span class="lc-box"></span>Analytics baseline recorded</li>
+</ul>
+<p>That is a complete launch SOP. No document to hunt for. No wondering if you missed something.</p>
+
+<h2>The Four SOPs Every OPC Should Build First</h2>
+<table class="sop-table">
+<thead><tr><th>SOP</th><th>What it captures</th></tr></thead>
+<tbody>
+<tr><td>Content production</td><td>From idea to published post — keyword check, intent, draft, human edit, fact check, internal links, SEO, publish, post-publish review</td></tr>
+<tr><td>Product launch</td><td>From requirement to live — design, build, test, launch checklist, first analytics review</td></tr>
+<tr><td>Customer support</td><td>How to classify and respond to each message type: bug, refund, how-to, feature request, spam</td></tr>
+<tr><td>Weekly data review</td><td>Exactly which numbers to check, what questions to ask, what decisions to make</td></tr>
+</tbody>
+</table>
+<p>Rule: <strong>the third time you do something the same way, write the SOP.</strong> First time is exploration. Second time is confirmation. Third time is a pattern — and patterns belong in a document, not your head.</p>
+
+<h2>Content Production: Quality Over Volume</h2>
+<p>The worst version of AI-assisted content: "AI finds keywords → AI writes 100 articles → auto-publish." That is automating garbage at scale.</p>
+<p>A useful content SOP goes through real gates:</p>
+<div class="mono-block">Real question or keyword found
+        ↓
+Is it worth writing? (search intent, competition, relevance)
+        ↓
+Gather reliable sources
+        ↓
+AI structures outline
+        ↓
+AI writes first draft
+        ↓
+Human edits for accuracy and voice
+        ↓
+Fact check
+        ↓
+Internal links added
+        ↓
+SEO basics checked
+        ↓
+Publish
+        ↓
+Review at 30 / 60 / 90 days
+        ↓
+Update / keep / merge / remove</div>
+<p>That last step matters as much as the first. Publishing is not the end of the process. It is the start of the measurement loop.</p>
+
+<h2>Where AI Fits — and Where It Does Not</h2>
+<div class="two-col">
+<div class="col-block">
+<p class="col-label">AI is good at</p>
+<ul>
+<li>Structuring outlines</li>
+<li>First drafts from a brief</li>
+<li>Summarising sources</li>
+<li>Format conversions</li>
+<li>Translation drafts</li>
+<li>Code boilerplate</li>
+<li>Classifying support emails</li>
+<li>Spotting anomalies in data</li>
+<li>Generating meta descriptions</li>
+</ul>
+</div>
+<div class="col-block">
+<p class="col-label">You must keep</p>
+<ul>
+<li>What to build next</li>
+<li>Which projects to stop</li>
+<li>Whether to trust output</li>
+<li>Product direction</li>
+<li>Final quality call</li>
+<li>Spend decisions</li>
+<li>Whether to launch or not</li>
+<li>Founder relationships</li>
+<li>Brand voice and values</li>
+</ul>
+</div>
+</div>
+<p>AI removes low-value cognitive load. You keep judgment.</p>
+
+<h2>Three Questions Before Automating Anything</h2>
+<ol class="q-list">
+<li>
+<span class="q-num">1</span>
+<div class="q-body">
+<p>Is it genuinely repetitive?</p>
+<small>If every instance is different, AI adds limited value. Automation requires predictable inputs and outputs.</small>
+</div>
+</li>
+<li>
+<span class="q-num">2</span>
+<div class="q-body">
+<p>Is "good vs bad" objectively clear?</p>
+<small>Checking if a canonical tag exists: yes. Deciding whether this article is worth writing: no.</small>
+</div>
+</li>
+<li>
+<span class="q-num">3</span>
+<div class="q-body">
+<p>How bad is an AI mistake here?</p>
+<small>Wrong button label: low cost. Auto-processing a payment dispute, publishing medical information, or sending bulk email: high cost. Higher cost = more human review required, not less.</small>
+</div>
+</li>
+</ol>
+
+<h2>The Four Levels of Automation Maturity</h2>
+<div class="level-grid">
+<div class="level-card"><p class="lv-num">Level 1</p><p class="lv-title">Checklist</p><p class="lv-eg">New site launch SOP. You do the work; the list prevents skipped steps.</p></div>
+<div class="level-card"><p class="lv-num">Level 2</p><p class="lv-title">Template</p><p class="lv-eg">One-Person Site Starter. The structure is pre-built; you fill in the content.</p></div>
+<div class="level-card"><p class="lv-num">Level 3</p><p class="lv-title">AI Assisted</p><p class="lv-eg">AI writes the draft, generates the code, or classifies the email. You review and approve.</p></div>
+<div class="level-card"><p class="lv-num">Level 4</p><p class="lv-title">Automated</p><p class="lv-eg">Git push → Cloudflare deploys. Payment received → confirmation email sent. No human in the loop for routine cases.</p></div>
+</div>
+<p>A functioning OPC typically runs all four levels simultaneously. You do not graduate from one to the next — you apply the right level to each specific task.</p>
+
+<h2>Human in the Loop: The Right Model for Early OPC</h2>
+<div class="hitl-block">
+<p><strong>Human in the Loop</strong> means: AI does 80% of the mechanical work, you handle the final 20% that requires judgment.</p>
+<br>
+<p>Example — customer support:</p>
+</div>
+<div class="mono-block">Incoming email
+      ↓
+AI classifies: Bug / Refund / How-to / Suggestion / Spam
+      ↓
+AI drafts a response
+      ↓
+You review (30 seconds)
+      ↓
+You send</div>
+<p>That is very different from AI deciding unilaterally whether to issue a refund. The judgment stays with you. The grunt work does not.</p>
+
+<h2>When Zapier and Make Are Worth It</h2>
+<p>A simple formula for deciding whether automation is worth building:</p>
+<div class="mono-block">Frequency × Time per instance × Error cost
+    >
+Setup cost + Maintenance cost</div>
+<p>A task that happens weekly and takes two minutes: do it manually. A task that happens 50 times per day and takes three minutes each: that is 2.5 hours per day — automate it immediately.</p>
+<div class="warning-box"><p><strong>Early OPC trap:</strong> spending three days configuring Zapier + PayPal + Sheets + webhooks to handle two orders per month. That is negative ROI. Automate genuine bottlenecks, not low-frequency tasks that feel inefficient.</p></div>
+
+<h2>Payment Automation: The One Place to Be Careful</h2>
+<p>Once real orders arrive, manual fulfillment (read PayPal email → manually send PDF) will not scale. An automated order flow looks like:</p>
+<div class="mono-block">Payment completed (PayPal/Stripe webhook)
+      ↓
+Server validates: real payment? correct amount? correct currency?
+      ↓
+Order created
+      ↓
+Product access granted / download link sent
+      ↓
+Confirmation email sent
+      ↓
+Transaction logged</div>
+<div class="correction-box"><p><strong>Critical rule:</strong> always validate on the server side using the official webhook from the payment provider. Never trust the frontend to report "payment succeeded" — that signal is trivially spoofed. The closer the automation is to money, identity, or permissions, the more important server-side verification becomes.</p></div>
+
+<h2>Email Automation Done Right</h2>
+<p>A simple post-purchase sequence for a $4.99 digital product:</p>
+<div class="mono-block">Day 0   Purchase confirmation + product delivery
+Day 1   Quick tip for getting the most from it
+Day 7   "Any questions?" — genuine, not promotional
+Day 14  Invitation to leave an honest review</div>
+<p>The danger of email automation is the same as any automation: it scales whatever you already have. A helpful sequence helps at scale. A pushy promotional sequence becomes harassment at scale. Design the sequence as if you were sending each email yourself.</p>
+
+<h2>Data Review Automation</h2>
+<p>Managing multiple websites manually means logging into GA4, GSC, revenue dashboards, and cost trackers one by one. With five sites this is tedious. With twenty it is impossible.</p>
+<p>The target state:</p>
+<div class="mono-block">GA4 + GSC + Revenue + Costs
+              ↓
+        Unified dashboard
+              ↓
+        Weekly digest
+              ↓
+  AI flags: what went up? what went down?
+            which page is anomalous?
+              ↓
+     You ask: why? and what next?</div>
+<p>You move from reading every number to responding only to signals that matter.</p>
+
+<h2>Management by Exception</h2>
+<p>A mature operating system should not require the founder to monitor normal operations. Normal is not news.</p>
+<div class="mono-block">Normal payment processed    → no notification needed
+Payment failed              → notify founder
+
+Normal deployment           → no notification needed
+CI check failed             → notify founder
+
+Normal traffic              → no notification needed
+Traffic drops 60% overnight → notify founder</div>
+<p>If your dashboard is full of green, you should be able to close it and go work on something that matters. The system's job is to tell you when something breaks — not to demand daily attention to confirm nothing is wrong.</p>
+
+<h2>The Three Roles in a Functioning OPC</h2>
+<div class="roles-grid">
+<div class="role-card">
+<p class="rc-label">System / Automation</p>
+<ul class="rc-list">
+<li>Repetitive execution</li>
+<li>Monitoring &amp; alerts</li>
+<li>Checks &amp; validation</li>
+<li>Deploy &amp; delivery</li>
+<li>Data collection</li>
+</ul>
+</div>
+<div class="role-card">
+<p class="rc-label">AI</p>
+<ul class="rc-list">
+<li>First drafts</li>
+<li>Classification</li>
+<li>Anomaly detection</li>
+<li>Summarising inputs</li>
+<li>Code generation</li>
+</ul>
+</div>
+<div class="role-card">
+<p class="rc-label">You (founder)</p>
+<ul class="rc-list">
+<li>Direction &amp; priorities</li>
+<li>Judgment calls</li>
+<li>Product decisions</li>
+<li>Risk &amp; money</li>
+<li>Final approval</li>
+</ul>
+</div>
+</div>
+<p>The goal is not a company with no humans. It is a company where the human's time is spent on decisions — not on tasks the system can handle.</p>
+
+<h2>What to SOP First: A Priority Order</h2>
+<table class="priority-table">
+<thead><tr><th>SOP</th><th>Priority</th><th>When to build</th></tr></thead>
+<tbody>
+<tr><td>New website startup</td><td><span class="badge badge-critical">Critical</span></td><td>Now</td></tr>
+<tr><td>Pre-launch checklist</td><td><span class="badge badge-critical">Critical</span></td><td>Now</td></tr>
+<tr><td>Weekly portfolio review</td><td><span class="badge badge-high">High</span></td><td>Now</td></tr>
+<tr><td>Content production</td><td><span class="badge badge-high">High</span></td><td>Now</td></tr>
+<tr><td>New tool / feature release</td><td><span class="badge badge-high">High</span></td><td>Now</td></tr>
+<tr><td>Bug handling</td><td><span class="badge badge-high">High</span></td><td>Now</td></tr>
+<tr><td>Customer support categories</td><td>When first emails arrive</td><td>At first users</td></tr>
+<tr><td>Payment &amp; refund handling</td><td>Before first charge</td><td>Before launch</td></tr>
+<tr><td>Email lifecycle</td><td>After first customers</td><td>After first customers</td></tr>
+<tr><td>Automated data digest</td><td>When managing 5+ sites</td><td>When managing 5+ sites</td></tr>
+</tbody>
+</table>
+<p>Currently active automation worth your attention: GitHub → Cloudflare deploy, CI checks, and a simple dashboard data pull. You do not need a SaaS stack to get started.</p>
+
+<h2>SOP → Template → Software: The Leverage Ladder</h2>
+<p>The highest-leverage version of an SOP is when it becomes code.</p>
+<div class="mono-block">SOP: "every new site needs canonical, sitemap, GA4, robots.txt..."
+        ↓
+Template: One-Person Site Starter already includes all of it
+        ↓
+Software: Claude builds new sites from the template automatically</div>
+<p>You no longer tell Claude how to set up canonical tags on every new project. The template already knows. That is what it means to not solve the same infrastructure problem twice.</p>
+
+<h2>Eight Things to Carry from This Lesson</h2>
+<ol class="eight-list">
+<li><strong>SOPs save decisions, not just time.</strong> Every re-decided question was already answered before.</li>
+<li><strong>Do it right manually first, then document it, then automate it.</strong> Never in the reverse order.</li>
+<li><strong>The third time you do something the same way, write the SOP.</strong></li>
+<li><strong>AI handles repetitive cognitive work. You keep direction and judgment.</strong></li>
+<li><strong>SOP becomes template; template becomes software.</strong> Each step multiplies leverage.</li>
+<li><strong>Automate genuine bottlenecks, not low-frequency tasks that feel inefficient.</strong></li>
+<li><strong>Payment automation requires server-side webhook validation.</strong> Never trust the frontend to confirm a payment.</li>
+<li><strong>The target is Management by Exception:</strong> normal operations run silently; you respond only when something breaks.</li>
+</ol>
+
+<div class="takeaway">
+<p>"The goal is not full automation. It's getting the system to run, AI to assist, and you to decide — instead of rebuilding the same thing and fighting the same fires every week."</p>
+</div>
+
+<p style="margin-top:1.75rem;text-align:center;"><a href="https://github.com/daligao/one-dollar-opc/discussions" target="_blank" rel="noopener" style="font-size:.82rem;color:var(--accent);text-decoration:none;font-family:var(--mono);">Discuss this lesson on GitHub →</a></p>
+
+<div class="lesson-nav">
+<a href="/playbook/14/">← Lesson 14</a>
+<a href="/playbook/">Back to All Lessons</a>
+</div>
+</div></section>
+
+<footer>
+<p class="footer-brand">The $1 OPC Experiment</p>
+<p class="footer-tagline">One Person. One Laptop. One Dollar Domain.</p>
+<p class="footer-links"><a href="/">Dashboard</a> &middot; <a href="/playbook/">Playbook</a> &middot; <a href="/manifesto/">Manifesto</a> &middot; <a href="/contact/">Contact</a> &middot; <a href="https://ordinarymantrying.com/?utm_source=one-dollar&utm_medium=footer&utm_campaign=opc_experiment" target="_blank" rel="noopener">Ordinary Man Trying ↗</a></p>
+</footer></body></html>
