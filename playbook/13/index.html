@@ -1,0 +1,265 @@
+<!DOCTYPE html><html lang="en"><head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0BP5M4XY6"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Z0BP5M4XY6');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 13: Compliance, Payments and Trust for an Overseas OPC — OPC Playbook</title>
+<meta name="description" content="Running an online business that reaches international users means navigating privacy rules, payment platform health, tax obligations, refund laws, and the harder problem of trust.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://one-dollar.ordinarymantrying.com/playbook/13/">
+<meta property="og:title" content="Lesson 13: Compliance, Payments and Trust for an Overseas OPC">
+<meta property="og:url" content="https://one-dollar.ordinarymantrying.com/playbook/13/">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--bg:#fafaf9;--text:#1c1c1a;--muted:#6b6b63;--accent:#2563eb;--border:#e4e4e0;--card:#ffffff;--hero-bg:#111110;--hero-text:#f5f5f3;--hero-muted:#9ca3a0;--mono:'Courier New',Courier,monospace;}
+html{scroll-behavior:smooth;}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(250,250,249,0.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 1.5rem;}
+.nav-inner{max-width:920px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:52px;gap:.75rem;}
+.nav-brand{font-family:var(--mono);font-weight:700;font-size:.9rem;color:var(--text);text-decoration:none;white-space:nowrap;letter-spacing:.02em;}
+.nav-links{display:flex;align-items:center;gap:.1rem;list-style:none;}
+.nav-links a{font-size:.8rem;color:var(--muted);text-decoration:none;padding:.3rem .55rem;border-radius:4px;transition:color .15s;}
+.nav-links a:hover,.nav-links a[aria-current]{color:var(--text);}
+.nav-omt{font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none;white-space:nowrap;}
+.nav-omt:hover{text-decoration:underline;}
+.container{max-width:720px;margin:0 auto;}section{padding:4.5rem 1.5rem;}
+#hero{background:var(--hero-bg);color:var(--hero-text);padding:4.5rem 1.5rem 3.5rem;}
+.breadcrumb{font-family:var(--mono);font-size:.7rem;color:var(--hero-muted);margin-bottom:1.25rem;}
+.breadcrumb a{color:var(--hero-muted);text-decoration:none;}.breadcrumb a:hover{color:var(--hero-text);}
+.lesson-num{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--hero-muted);margin-bottom:.5rem;}
+#hero h1{font-size:clamp(1.7rem,4.5vw,2.6rem);font-weight:800;line-height:1.15;letter-spacing:-.025em;}
+.toc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;margin:2rem 0;}
+.toc-title{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.75rem;}
+.toc ol{padding-left:1.1rem;margin:0;}
+.toc li{font-size:.88rem;padding:.25rem 0;color:var(--text);}
+.toc a{color:var(--accent);text-decoration:none;}.toc a:hover{text-decoration:underline;}
+h2{font-size:1.15rem;font-weight:700;letter-spacing:-.01em;margin:2.5rem 0 .75rem;}
+h2:first-of-type{margin-top:0;}
+p{font-size:.95rem;color:var(--muted);line-height:1.8;margin-bottom:.75rem;}p:last-child{margin-bottom:0;}strong{color:var(--text);}
+.mono-block{font-family:var(--mono);font-size:.82rem;background:#f8f8f6;border:1px solid var(--border);border-radius:6px;padding:1rem 1.25rem;line-height:1.9;color:var(--text);margin:1rem 0;}
+.part-header{background:var(--hero-bg);color:var(--hero-text);border-radius:8px;padding:1rem 1.25rem;margin:2.5rem 0 1rem;display:flex;gap:.75rem;align-items:center;}
+.ph-num{font-family:var(--mono);font-size:.75rem;color:#6ee7b7;flex-shrink:0;}
+.ph-title{font-size:1rem;font-weight:700;}
+.correction-box{background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:1rem 1.25rem;margin:1.25rem 0;}
+.correction-box p{font-size:.88rem;color:#14532d;margin:0;line-height:1.65;}
+.warning-box{background:#fff8e1;border:1px solid #f0d060;border-radius:8px;padding:1rem 1.25rem;margin:1.25rem 0;}
+.warning-box p{font-size:.88rem;color:#92400e;margin:0;line-height:1.65;}
+.checklist{list-style:none;margin:1rem 0;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.checklist li{padding:.65rem 1rem;border-bottom:1px solid var(--border);font-size:.88rem;color:var(--text);display:flex;gap:.65rem;}
+.checklist li:last-child{border-bottom:none;}
+.cl-icon{color:var(--accent);flex-shrink:0;font-family:var(--mono);font-size:.75rem;}
+.mvc-table{width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:.82rem;}
+.mvc-table th{text-align:left;padding:.55rem .75rem;border-bottom:2px solid var(--border);font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
+.mvc-table td{padding:.5rem .75rem;border-bottom:1px solid var(--border);vertical-align:top;color:var(--muted);}
+.mvc-table td:first-child{color:var(--text);font-weight:600;white-space:nowrap;}
+.mvc-table tr:last-child td{border-bottom:none;}
+.trust-formula{background:var(--hero-bg);color:var(--hero-text);border-radius:10px;padding:1.75rem 2rem;margin:1.75rem 0;text-align:center;}
+.tf-eq{font-family:var(--mono);font-size:1.05rem;color:#6ee7b7;margin-bottom:1.25rem;}
+.tf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:1rem;}
+.tf-item{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:.75rem;text-align:left;}
+.tf-label{font-family:var(--mono);font-size:.68rem;color:#6ee7b7;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.35rem;}
+.tf-desc{font-size:.8rem;color:var(--hero-muted);line-height:1.55;}
+.six-list{list-style:none;margin:1.25rem 0;counter-reset:sixs;}
+.six-list li{counter-increment:sixs;padding:.8rem 0;border-bottom:1px solid var(--border);display:flex;gap:.85rem;align-items:baseline;font-size:.92rem;color:var(--muted);}
+.six-list li strong{color:var(--text);}
+.six-list li:last-child{border-bottom:none;}
+.six-list li::before{content:counter(sixs);font-family:var(--mono);font-size:.75rem;font-weight:700;color:var(--accent);min-width:18px;flex-shrink:0;}
+.takeaway{border-left:3px solid var(--accent);padding:.85rem 1.1rem;margin:2.5rem 0;background:#f0f4ff;}
+.takeaway p{font-size:.95rem;color:var(--text);font-weight:600;font-style:italic;margin:0;line-height:1.55;}
+.lesson-nav{display:flex;justify-content:space-between;gap:1rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);flex-wrap:wrap;}
+.lesson-nav a{font-size:.85rem;font-weight:600;color:var(--accent);text-decoration:none;}.lesson-nav a:hover{text-decoration:underline;}
+footer{padding:2rem 1.5rem;border-top:1px solid var(--border);text-align:center;}
+.footer-brand{font-family:var(--mono);font-size:.8rem;font-weight:700;color:var(--text);margin-bottom:.2rem;}
+.footer-tagline{font-size:.78rem;color:var(--muted);margin-bottom:.75rem;}
+.footer-links{font-size:.78rem;color:var(--muted);}.footer-links a{color:var(--accent);text-decoration:none;}.footer-links a:hover{text-decoration:underline;}
+@media(max-width:640px){nav{padding:0 1rem;}.nav-links{display:none;}section{padding:3rem 1rem;}#hero{padding:3rem 1rem 2.5rem;}.tf-grid{grid-template-columns:1fr;}}
+</style></head><body>
+<nav aria-label="Site navigation"><div class="nav-inner">
+<a class="nav-brand" href="/">$1 OPC</a>
+<ul class="nav-links" role="list">
+<li><a href="/">Dashboard</a></li><li><a href="/playbook/" aria-current="true">Playbook</a></li>
+<li><a href="/manifesto/">Manifesto</a></li><li><a href="/contact/">Contact</a></li>
+</ul>
+<a class="nav-omt" href="https://ordinarymantrying.com/?utm_source=one-dollar&utm_medium=nav&utm_campaign=opc_experiment" target="_blank" rel="noopener">Ordinary Man Trying&nbsp;↗</a>
+</div></nav>
+
+<section id="hero"><div class="container">
+<p class="breadcrumb"><a href="/playbook/">← Playbook</a></p>
+<p class="lesson-num">Lesson 13</p>
+<h1>Compliance, Payments and Trust for an Overseas OPC</h1>
+</div></section>
+
+<section><div class="container">
+
+<p>Running a purely domestic website has its own rules. Running an overseas-facing one-person internet company means simultaneously navigating privacy regulations from multiple jurisdictions, payment platform risk policies, international tax obligations, refund laws that vary by country, and the harder social problem: convincing strangers in other countries that you are a real, trustworthy business.</p>
+<p>This lesson covers all five areas — and gives you a practical minimum-viable-compliance framework for each stage of growth.</p>
+
+<div class="toc">
+<p class="toc-title">In this lesson</p>
+<ol>
+<li><a href="#privacy">Privacy compliance — not just a policy page</a></li>
+<li><a href="#payments">Payment platform health — lower risk, not "anti-ban tricks"</a></li>
+<li><a href="#tax">Tax — payment ≠ compliance</a></li>
+<li><a href="#refunds">Refunds — don't just write "No Refunds"</a></li>
+<li><a href="#trust">Building trust with overseas users</a></li>
+<li><a href="#mvc">Minimum Viable Compliance by stage</a></li>
+</ol>
+</div>
+
+<div class="part-header" id="privacy">
+<span class="ph-num">Part 1</span>
+<span class="ph-title">Privacy Compliance — Not Just a Policy Page</span>
+</div>
+
+<h2>The Wrong Question and the Right One</h2>
+<p><strong>Wrong:</strong> "Does my website have a privacy policy?"</p>
+<p><strong>Right:</strong> "What data am I actually collecting? Why? Who gets it? How long do I keep it? Can a user refuse or delete it?"</p>
+
+<h2>GDPR: Broader Than Most Small Sites Realize</h2>
+<p>GDPR applies not only to EU-based companies. If you actively offer goods or services to people inside the EU, or monitor their behavior, GDPR may apply to you regardless of where you are located.</p>
+<p>The core principles: collect data lawfully, for a specific stated purpose, with minimum necessary scope, for a defined retention period, with security in place, and with the ability to demonstrate accountability.</p>
+
+<h2>Cookie Consent: The Logic Many Sites Get Backwards</h2>
+<p>Under EU rules, strictly necessary cookies (login sessions, shopping carts) generally do not require prior consent. Analytics and advertising cookies typically do.</p>
+<div class="warning-box"><p><strong>The common mistake:</strong> GA4 starts loading the moment the page opens. Then below the fold there is a "Accept cookies?" banner. The consent comes after the tracking. That logic is reversed.</p></div>
+<div class="correction-box"><p><strong>Right flow:</strong> EU visitor arrives → sees cookie choices → selects preferences → <em>then</em> the non-necessary tools (analytics, advertising) are activated. Consent before tracking, not after.</p></div>
+
+<h2>CCPA: Don't Panic Unless You Meet the Thresholds</h2>
+<p>CCPA currently applies primarily to for-profit businesses with annual gross revenue over ~$26.6M, or those that buy/sell/share the personal information of 100,000+ consumers per year, or that earn 50%+ of annual revenue from selling or sharing personal data.</p>
+<p>An early OPC is very far from most of those thresholds. Still, from day one, practice: collect less, explain more, don't sell data, provide a contact channel for questions, delete when asked.</p>
+<p>That is good product design, not just legal compliance.</p>
+
+<h2>Your Privacy Policy Must Reflect Reality</h2>
+<p>A privacy policy copied from a generic template and never updated is worse than useful — it may not match what you actually do, and a mismatch is itself a compliance problem.</p>
+<p>Include: who you are, why you collect data, your legal basis, which third-party services receive data (GA4, payment processors, email platforms), cross-border data transfers, retention periods, and how users can exercise their rights.</p>
+
+<div class="part-header" id="payments">
+<span class="ph-num">Part 2</span>
+<span class="ph-title">Payment Platform Health — Transparency, Not Tricks</span>
+</div>
+
+<h2>The Right Mental Model</h2>
+<p>Searching for "how to avoid Stripe/PayPal account freezes" often leads to the wrong place: how to work around risk detection. The right question is different:</p>
+<p><strong>How do I make my business look, to any risk system, exactly like what it genuinely is — a transparent, low-risk, legitimate merchant?</strong></p>
+
+<h2>What a Healthy Merchant Account Looks Like</h2>
+<ul class="checklist">
+<li><span class="cl-icon">✓</span><span>Real verified identity attached to the account</span></li>
+<li><span class="cl-icon">✓</span><span>A website that clearly explains what is being sold, at what price, and what the user receives</span></li>
+<li><span class="cl-icon">✓</span><span>Visible contact information and support email</span></li>
+<li><span class="cl-icon">✓</span><span>Clear refund policy before purchase</span></li>
+<li><span class="cl-icon">✓</span><span>Order confirmations sent to buyers</span></li>
+<li><span class="cl-icon">✓</span><span>Consistent business description across the account, the website, and billing statements</span></li>
+<li><span class="cl-icon">✓</span><span>Low dispute and chargeback rate</span></li>
+<li><span class="cl-icon">✓</span><span>Gradual growth in revenue, not a sudden spike on a new account</span></li>
+</ul>
+<p>A customer who sees an unrecognised name on their credit card statement and files a chargeback is not your enemy — they are a signal that your billing statement name and customer communication need work. Fix the signal, not the symptom.</p>
+
+<div class="part-header" id="tax">
+<span class="ph-num">Part 3</span>
+<span class="ph-title">Tax — Payment ≠ Compliance</span>
+</div>
+
+<h2>The Gap Most Founders Miss</h2>
+<p>PayPal processes your sale. The money arrives. Everything seems fine.</p>
+<div class="warning-box"><p><strong>Payment ≠ tax handled.</strong> Payment, VAT/GST/Sales Tax, and your income tax obligation are three separate things. The payment processor handles the first. You are responsible for the other two.</p></div>
+
+<h2>Digital Products and International VAT/GST</h2>
+<p>If you sell a digital product (PDF report, premium tool unlock, downloadable content) to customers in Germany, France, Australia, the UK, and Canada, those five jurisdictions may each have different VAT/GST rules for digital services sold to consumers.</p>
+<p>The EU has an OSS (One Stop Shop) mechanism that simplifies multi-country VAT filing for some cross-border digital sales. Other countries have their own thresholds and registration requirements.</p>
+
+<h2>Three Paths as You Scale</h2>
+<div class="mono-block">Early stage:   Self-monitor, research as you approach thresholds
+Mid stage:     Accounting software + tax tool (e.g. Quaderno, TaxJar)
+Later stage:   Merchant of Record platform — they handle tax collection
+               and remittance as part of processing the payment</div>
+<p>At $0 revenue, don't spend six months studying 195 countries' tax laws. Do set a reminder to revisit tax obligations before your first consistent cross-border digital product sales.</p>
+
+<div class="part-header" id="refunds">
+<span class="ph-num">Part 4</span>
+<span class="ph-title">Refunds — "No Refunds" Is Not Always Enforceable</span>
+</div>
+
+<h2>Why "All Sales Final" Is Not Enough</h2>
+<p>Many independent developers write "No refunds" and feel protected. In some markets, that clause is not legally enforceable against consumer rights.</p>
+<p>In the EU, consumers generally have a 14-day withdrawal right for distance purchases. For digital content there is an important exception: if the consumer explicitly requests immediate delivery and explicitly acknowledges they lose the withdrawal right once delivery begins, the right can be waived. The key word is <strong>explicitly</strong> — buried in terms of service is not sufficient.</p>
+<div class="correction-box"><p>If you sell instantly delivered digital content, consider building the acknowledgment into checkout: a clear checkbox that states the user requests immediate delivery and understands the withdrawal right is forfeited. The design of checkout is a compliance decision, not just a UX decision.</p></div>
+
+<div class="part-header" id="trust">
+<span class="ph-num">Part 5</span>
+<span class="ph-title">Building Trust with Overseas Users</span>
+</div>
+
+<h2>What a First-Time Visitor Is Really Asking</h2>
+<p>A user in the US considering a $4.99 purchase from a small website they found today is thinking:</p>
+<div class="mono-block">Is this real or a scam?
+Who made this?
+If something goes wrong, who do I contact?
+Will they charge me again without asking?
+Can I get a refund?
+What exactly am I buying?
+Has anyone else used this?</div>
+<p>Your Contact page, About page, Refund Policy, and build-in-public track record answer those questions before the user has to ask.</p>
+
+<h2>Reviews: The Right Way to Use Trustpilot</h2>
+<p>Review platforms explicitly prohibit: inviting only satisfied customers, incentivising positive reviews with discounts or gifts, writing your own reviews, or removing bad reviews by offering refunds.</p>
+<div class="correction-box"><p>The correct approach: invite all customers uniformly with neutral language ("Please share your honest experience"). Respond thoughtfully to negative reviews. A profile with 17 reviews at 4.6 stars is often more credible than 17 five-star reviews that all sound identical.</p></div>
+
+<h2>Google Business Profile: Online-Only Sites Don't Qualify</h2>
+<p>Google's current policy states that online-only businesses generally do not meet the eligibility criteria for Google Business Profile, which requires in-person customer interaction. Do not create a business listing with a fabricated office address to appear more legitimate — that creates platform risk, not trust.</p>
+
+<h2>Community Distribution: Earned, Not Pushed</h2>
+<p>The least effective approach: posting your link in multiple subreddits with "I built this amazing tool, check it out." The likely result is spam flags and bans.</p>
+<p>The effective approach: become genuinely useful in the community first. Answer questions in depth. When a link is relevant, include it as a resource, not the point. This is earned distribution — the opposite of spam distribution — and it compounds over time.</p>
+
+<h2>The Trust Formula</h2>
+<div class="trust-formula">
+<p class="tf-eq">Trust = Transparency × Consistency × Time</p>
+<div class="tf-grid">
+<div class="tf-item"><p class="tf-label">Transparency</p><p class="tf-desc">Who you are. What you sell. How to contact you. Real numbers, real results, real failures.</p></div>
+<div class="tf-item"><p class="tf-label">Consistency</p><p class="tf-desc">Website, payment, product, and customer support all tell the same story.</p></div>
+<div class="tf-item"><p class="tf-label">Time</p><p class="tf-desc">Not launched yesterday and gone tomorrow. Months and years of uninterrupted presence.</p></div>
+</div>
+</div>
+
+<div class="part-header" id="mvc">
+<span class="ph-num">Summary</span>
+<span class="ph-title">Minimum Viable Compliance by Stage</span>
+</div>
+
+<table class="mvc-table">
+<thead><tr><th>Stage</th><th>What to do now</th></tr></thead>
+<tbody>
+<tr><td>$0 — live site</td><td>Privacy policy (real, not template), Cookie notice, Terms, Contact page, honest product description, verified identity on payment accounts</td></tr>
+<tr><td>Adding analytics / ads</td><td>Cookie consent flow: consent before analytics fires, not after</td></tr>
+<tr><td>First paid product</td><td>Refund policy, clear purchase description, order confirmation email, support email, billing statement name matches your product</td></tr>
+<tr><td>Cross-border digital sales</td><td>Research VAT/GST thresholds for your top-traffic countries; set up tax tool or consider Merchant of Record</td></tr>
+<tr><td>Growing order volume</td><td>Monitor dispute rate; document fulfillment process; backup payment method; review Stripe/PayPal prohibited businesses list</td></tr>
+<tr><td>Real customer base</td><td>Structured review invitation process; respond to all reviews; update privacy policy as data practices change</td></tr>
+</tbody>
+</table>
+
+<h2>Six Things to Carry From This Lesson</h2>
+<ol class="six-list">
+<li><strong>Privacy compliance is not a page — it's knowing what data flows where and why.</strong></li>
+<li><strong>Collect less data. That is safer than writing a longer policy.</strong></li>
+<li><strong>Payment account health comes from transparency and low disputes, not anti-ban tricks.</strong></li>
+<li><strong>Receiving payment and handling tax are two separate obligations.</strong></li>
+<li><strong>Refund rules vary by market. "No Refunds" is not universally enforceable.</strong></li>
+<li><strong>Trust with overseas users accumulates through transparency, consistency, and time. None of those can be faked quickly.</strong></li>
+</ol>
+
+<div class="takeaway">
+<p>"Compliance is not the fine print at the bottom of the page. Sometimes it reaches all the way into how you design checkout."</p>
+</div>
+
+<div class="lesson-nav">
+<a href="/playbook/12/">← Lesson 12</a>
+<a href="/playbook/14/">Lesson 14: Monetization and Revenue System Design →</a>
+</div>
+<p style="margin-top:1.75rem;text-align:center;"><a href="https://github.com/daligao/one-dollar-opc/discussions" target="_blank" rel="noopener" style="font-size:.82rem;color:var(--accent);text-decoration:none;font-family:var(--mono);">Discuss this lesson on GitHub →</a></p>
+</div></section>
+
+<footer>
+<p class="footer-brand">The $1 OPC Experiment</p>
+<p class="footer-tagline">One Person. One Laptop. One Dollar Domain.</p>
+<p class="footer-links"><a href="/">Dashboard</a> &middot; <a href="/playbook/">Playbook</a> &middot; <a href="/manifesto/">Manifesto</a> &middot; <a href="/contact/">Contact</a> &middot; <a href="https://ordinarymantrying.com/?utm_source=one-dollar&utm_medium=footer&utm_campaign=opc_experiment" target="_blank" rel="noopener">Ordinary Man Trying ↗</a></p>
+</footer></body></html>
